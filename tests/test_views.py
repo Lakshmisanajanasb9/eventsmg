@@ -1,7 +1,7 @@
 import json
 from website import create_app
 
-app = create_app
+app = create_app()
 client = app.test_client()
 
 def test_example():
@@ -13,3 +13,6 @@ def get_events():
     assert response.status_code == 200
     data = json.loads(response.data)
     assert isinstance(data, list)
+
+def book_event():
+    assert 1 + 1 == 2
