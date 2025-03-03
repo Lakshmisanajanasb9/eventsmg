@@ -19,6 +19,7 @@ jobs:
         run: |
           pip install pytest  # Install pytest for testing
           pip install flask
+          pip install flask_sqlalchemy
 
       - name: Set PYTHONPATH
         run: |
