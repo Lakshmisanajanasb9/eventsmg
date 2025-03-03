@@ -1,14 +1,14 @@
 name: Basic CI Pipeline
 
-on: [push, pull_request]  # Run on every push and pull request
+on: [push, pull_request]
 
 jobs:
   test:
-    runs-on: ubuntu-latest  # Use Ubuntu as the environment
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout Code
-        uses: actions/checkout@v3  # Get latest code from GitHub
+        uses: actions/checkout@v3
 
       - name: Set Up Python
         uses: actions/setup-python@v4
@@ -20,24 +20,28 @@ jobs:
           python -m venv venv 
           source venv/bin/activate 
           pip install --upgrade pip 
-          pip install pytest  # Install pytest for testing
+          pip install pytest
           pip install flask
           pip install flask_sqlalchemy
 
       - name: Set PYTHONPATH
         run: |
-          echo "PYTHONPATH=$(pwd)" >> $GITHUB_ENV  # Set PYTHONPATH to the current directory
+          echo "PYTHONPATH=$(pwd)" >> $GITHUB_ENV
+
+      - name: Run the app manually in the background
+        run: |
+          source venv/bin/activate
+          nohup python run.py &
+
+      - name: Wait for Flask to start
+        run: sleep 5  # Wait for the Flask app to start
 
       - name: Run Tests
         working-directory: ./
         run: |
           source venv/bin/activate
-          pytest tests/  
+          pytest tests/
 
-      - name: Run the app manually 
+      - name: Test Flask Server is Running
         run: |
-          source venv/bin/activate 
-          python run.py 
-
-       
-
+          curl -f http://127.0.0.1:5000/ || exit 1
