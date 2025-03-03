@@ -17,9 +17,10 @@ jobs:
 
       - name: Install Dependencies
         run: |
-          pip install pytest  # Install pytest for testing
-          pip install flask
-          pip install flask_sqlalchemy
+          python -m venv venv 
+          source venv/bin/activate 
+          pip intall --upgrade pip 
+          pip install -r requirements.txt
 
       - name: Set PYTHONPATH
         run: |
@@ -28,4 +29,9 @@ jobs:
       - name: Run Tests
         working-directory: ./
         run: pytest tests/  
+
+      - name: Run the app manually 
+        run: |
+          source venv/bin/activate 
+          python run.py 
 
