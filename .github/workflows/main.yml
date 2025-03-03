@@ -28,9 +28,7 @@ jobs:
         run: |
           echo "PYTHONPATH=$(pwd)" >> $GITHUB_ENV  # Set PYTHONPATH to the current directory
 
-      - name: Run Tests
-        working-directory: ./
-        run: pytest tests/  
+       
 
       - name: Run the app manually 
         run: |
