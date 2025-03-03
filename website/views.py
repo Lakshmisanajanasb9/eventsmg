@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template
+from flask import Blueprint, render_template, jsonify
 
 views = Blueprint('views' , __name__)
 
@@ -10,3 +10,12 @@ def home():
 @views.route('/example', methods=['GET', 'POST'])
 def example():
     return render_template('example.html')
+
+events_data = [
+    {"id": 1, "name": "Concert", "date": "2025-05-01", "available_seats": 100, "price": 50},
+    {"id": 2, "name": "Workshop", "date": "2025-06-15", "available_seats": 50, "price": 25},
+]
+
+@views.route('/events',methods=['GET'])
+def get_events():
+    return jsonify(events_data),200
