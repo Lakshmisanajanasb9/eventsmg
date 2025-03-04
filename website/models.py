@@ -10,9 +10,26 @@ class Customer(db.Model):
 
     # relations
 
-    bookings = db.relationship('booking',backref='customer')
-    reviews = db.relationship('review',backref='customer')
-    orders = db.relationship('order',backred='customer')
+    #bookings = db.relationship('booking',backref='customer')
+    #reviews = db.relationship('review',backref='customer')
+    #orders = db.relationship('order',backred='customer')
+
+
+class Event(db.Model):
+    __tablename__ = 'event'
+    event_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    admin_id = db.Column(db.Integer, nullable=False)
+    venue_id = db.Column(db.Integer,  nullable=False)
+    name = db.Column(db.String(255), nullable=False)
+    date = db.Column(db.DateTime, nullable=False)
+    description = db.Column(db.Text)
+    ticket_price = db.Column(db.Numeric(10, 2), nullable=False)
+
+class Venue(db.Model):
+    venue_id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(100), nullable=False)
+    # Add any other fields you need for the Venue model.
+
 
 """
 CREATE DATABASE Event_Management;

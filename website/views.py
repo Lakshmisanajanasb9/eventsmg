@@ -1,4 +1,5 @@
 from flask import Blueprint, render_template, jsonify
+from .models import db, Event 
 
 views = Blueprint('views' , __name__)
 
@@ -18,4 +19,5 @@ events_data = [
 
 @views.route('/events',methods=['GET'])
 def get_events():
-    return jsonify(events_data),200
+    events_conert = Event.query.all()
+    return jsonify([{'id': event.id, 'name': event.name, 'date': event.date} for event in events_conert]),200
