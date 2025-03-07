@@ -9,7 +9,6 @@ class Customer(db.Model):
     location = db.Column(db.String(255))
 
     # relations
-
     #bookings = db.relationship('booking',backref='customer')
     #reviews = db.relationship('review',backref='customer')
     #orders = db.relationship('order',backred='customer')
@@ -30,8 +29,27 @@ class Venue(db.Model):
     name = db.Column(db.String(100), nullable=False)
     # Add any other fields you need for the Venue model.
 
+class Admin(db.Model):
+    __tablename__ = 'admin'
+    admin_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    name = db.Column(db.String(255), nullable=False)
+    email = db.Column(db.String(255), unique=True, nullable=False)
 
 """
+class Booking(db.Model):
+    __tablename__ = 'booking'
+    booking_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    customer_id = db.Column(db.Integer, db.ForeignKey('customer.customer_id'), nullable=False)
+    event_id = db.Column(db.Integer, db.ForeignKey('event.event_id'), nullable=False)
+    num_tickets = db.Column(db.Integer, nullable=False)
+    total_price = db.Column(db.Numeric(10, 2), nullable=False)
+    booking_date = db.Column(db.DateTime, default=datetime.utcnow)
+
+    # Relationships
+    customer = db.relationship('Customer', backref='bookings')
+    event = db.relationship('Event', backref='bookings')
+
+
 CREATE DATABASE Event_Management;
 USE Event_Management;
 
@@ -40,7 +58,6 @@ CREATE TABLE Admins ( --add performer
     name VARCHAR(255),
     email VARCHAR(255) UNIQUE NOT NULL
 );
-
 
 
 CREATE TABLE Venues (
