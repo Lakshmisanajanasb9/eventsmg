@@ -31,7 +31,7 @@ class Venue(db.Model):
     location = db.Column(db.String(255), nullable=False)  
     capacity = db.Column(db.Integer, nullable=False)  
     description = db.Column(db.Text)
-     events = db.relationship('Event', backref='venue')
+    events = db.relationship('Event', backref='venue')
 
 class Admin(db.Model):
     __tablename__ = 'admin'
@@ -52,7 +52,7 @@ class Booking(db.Model):
     event_id = db.Column(db.Integer, db.ForeignKey('event.event_id'), nullable=False)
     num_tickets = db.Column(db.Integer, nullable=False)
     total_price = db.Column(db.Numeric(10, 2), nullable=False)
-    booking_date = db.Column(db.DateTime, default=datetime.utcnow)
+    booking_date = db.Column(db.DateTime)
     # Relationships
     customer = db.relationship('Customer', backref='bookings')
     event = db.relationship('Event', backref='bookings')
@@ -66,7 +66,7 @@ class Review(db.Model):
     performer_id = db.Column(db.Integer, db.ForeignKey('performer.performer_id'), nullable=True)  # Optional
     rating = db.Column(db.Integer, nullable=False)  # 1 to 5 stars
     comment = db.Column(db.Text)
-    review_date = db.Column(db.DateTime, default=datetime.utcnow)
+    review_date = db.Column(db.DateTime)
 
 class Order(db.Model):
     __tablename__ = 'order'
@@ -75,7 +75,7 @@ class Order(db.Model):
     event_id = db.Column(db.Integer, db.ForeignKey('event.event_id'), nullable=False)
     num_tickets = db.Column(db.Integer, nullable=False)
     total_price = db.Column(db.Numeric(10,2), nullable=False)
-    order_date = db.Column(db.DateTime, default=datetime.utcnow)
+    order_date = db.Column(db.DateTime)
     status = db.Column(db.String(20), default='Pending')  # Pending, Confirmed, Canceled
 
 class Category(db.Model):
