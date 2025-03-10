@@ -1,11 +1,11 @@
 from flask import Blueprint, render_template, jsonify,request
-from .models import db, Event 
+from .models import db, Event,Booking
 
 views = Blueprint('views' , __name__)
 
 @views.route('/', methods=['GET', 'POST'])
 def home():
-    return render_template('index.html')
+    return render_template('eventshome.html')
 
 
 @views.route('/example', methods=['GET', 'POST'])
