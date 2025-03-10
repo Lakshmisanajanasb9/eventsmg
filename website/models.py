@@ -8,21 +8,26 @@ class Customer(db.Model):
     phone = db.Column(db.String(20),unique = True)
     location = db.Column(db.String(255))
      # relations
-    bookings = db.relationship('booking',backref='customer')
-    reviews = db.relationship('review',backref='customer')
-    orders = db.relationship('order',backref ='customer')
+    #bookings = db.relationship('booking',backref='customer')
+    #reviews = db.relationship('review',backref='customer')
+    #orders = db.relationship('order',backref ='customer')
 
+class Category(db.Model):
+    __tablename__ = 'category'
+    category_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    name = db.Column(db.String(255), nullable=False, unique=True)
 
 class Event(db.Model):
     __tablename__ = 'event'
     event_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     admin_id = db.Column(db.Integer, nullable=False)
-    venue_id = db.Column(db.Integer,  nullable=False)
+    venue_id = db.Column(db.Integer, db.ForeignKey('venue.venue_id'), nullable=False)
     name = db.Column(db.String(255), nullable=False)
     date = db.Column(db.DateTime, nullable=False)
     description = db.Column(db.Text)
     ticket_price = db.Column(db.Numeric(10, 2), nullable=False)
     #relations
+    category_id = db.Column(db.Integer, db.ForeignKey('category.category_id'), nullable=True)
     category = db.relationship('Category', backref='events')
 
 class Venue(db.Model):
@@ -31,7 +36,7 @@ class Venue(db.Model):
     location = db.Column(db.String(255), nullable=False)  
     capacity = db.Column(db.Integer, nullable=False)  
     description = db.Column(db.Text)
-    events = db.relationship('Event', backref='venue')
+    events = db.relationship('Event', backref='venue',lazy = True)
 
 class Admin(db.Model):
     __tablename__ = 'admin'
@@ -71,17 +76,14 @@ class Review(db.Model):
 class Order(db.Model):
     __tablename__ = 'order'
     order_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    customer_id = db.Column(db.Integer, db.ForeignKey('customer.id'), nullable=False)
+    customer_id = db.Column(db.Integer, db.ForeignKey('customer.customer_id'), nullable=False)
     event_id = db.Column(db.Integer, db.ForeignKey('event.event_id'), nullable=False)
     num_tickets = db.Column(db.Integer, nullable=False)
     total_price = db.Column(db.Numeric(10,2), nullable=False)
     order_date = db.Column(db.DateTime)
     status = db.Column(db.String(20), default='Pending')  # Pending, Confirmed, Canceled
 
-class Category(db.Model):
-    __tablename__ = 'category'
-    category_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    name = db.Column(db.String(255), nullable=False, unique=True)
+
 
 """
 

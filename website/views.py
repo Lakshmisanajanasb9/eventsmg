@@ -20,7 +20,7 @@ events_data = [
 @views.route('/events',methods=['GET'])
 def get_events():
     events_conert = Event.query.all()
-    return jsonify([{'id': event.id, 'name': event.name, 'date': event.date} for event in events_conert]),200
+    return jsonify([{'id': event.id, 'name': event.name, 'date': event.date} for event in events_conert ]),200
 
 @views.route('/book-event', methods=['POST'])
 def book_event():
