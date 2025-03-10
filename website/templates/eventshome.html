@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Booking Web App</title>
+    <link rel="stylesheet" href="eventshome.css"> <!-- Link to css file -->
+</head>
+
+<body>
+    <header class="hero"> <!-- top banner -->
+	    <div class="header-container">
+	    <h1>Website Name</h1>
+		<button class ="Sign In/Up">Sign In</button>
+		</div>
+		
+		<p>Discover concerts, competitions and more near you.<p>	
+		
+		<!-- searchbar -->
+		<div class="search-container">
+		<input type="text" id="search" placeholder="Search events, venues and location...">
+		<button onclick="searchEvents()">Search</button> <!-- Trigger 'searchEvents' function -->
+	    </div>
+	</header>
+	
+	<section class="events"> <!-- Section for listing upcoming events -->
+        <h2>Popular Upcoming Events</h2>
+        <div class="event-grid"> <!-- Grid layout for events -->
+		
+	        <!-- Example event 1 -->
+	        
+			<div class="event">
+                <img src="C:\Users\ire\OneDrive\Desktop\Coding\COMP208\images\concert-example.png" alt="Concert"> <!-- Event image -->
+                <h3>Live Music Concert</h3>
+                <p>March 15, 2025 | New York</p> <!-- Event date and location -->
+                <button>Event Details</button> <!-- Button for more details about the event -->
+            </div>
+			
+			<!-- Example event 2 -->
+			
+			<div class="event">
+			    <img src="C:\Users\ire\OneDrive\Desktop\Coding\COMP208\images\ballet-example.webp" alt="Ballet">
+				<h3>Swan Lake Ballet Performance</h3>
+				<p>May 8, 2025 | London</p>
+				<button>Event Details</button>
+			</div>
+			
+			<!-- Example event 3 -->
+			
+			<div class="event">
+			    <img src="C:\Users\ire\OneDrive\Desktop\Coding\COMP208\images\football-example.webp" alt="Football">
+				<h3>Football Game</h3>
+				<p>July 20, 2025 | Manchester</p>
+				<button>Event Details</button>
+			</div>
+		</div>
+	</section>
+	
+    <section class="categories"> <!-- Section for event categories -->
+        <h2>Browse by Category</h2>
+        <div class="category-grid"> <!-- Grid layout for category buttons -->
+            <div class="category">🎤 Concerts</div>
+            <div class="category">📷 Workshops</div>
+            <div class="category">🍔 Festivals</div>
+            <div class="category">🎭 Theater</div>
+        </div>
+    </section>
+
+    <footer> <!-- Footer section with copyright text -->
+        <p>&copy; 2025 Event Booking. All Rights Reserved.</p> <!-- Copyright notice -->
+    </footer>
+	
+	<script src="eventshome.js"></script> <!-- JavaScript file -->
+	
+</body>
+</html>
