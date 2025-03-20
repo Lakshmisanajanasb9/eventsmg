@@ -8,7 +8,11 @@ body {
 /* Navbar Styling */
 .navbar {
     padding: 15px 20px;
-	color: #426b1f;
+	/*color: #426b1f;*/
+}
+
+.custom-navbar {
+    background-color: #426b1f; /* Change to your desired color */
 }
 
 .navbar-brand {
