@@ -4,73 +4,117 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Event Booking Web App</title>
-    <link rel="stylesheet" href="stylesheet.css"> <!-- Link to css file -->
-</head>
 
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="stylesheet.css"> <!-- Link to custom CSS file -->
+</head>
 <body>
-    <header class="hero"> <!-- top banner -->
-	    <div class="header-container">
-	    <h1>Website Name</h1>
-		<button class ="Sign In/Up">Sign In</button>
-		</div>
-		
-		<p>Discover concerts, competitions and more near you.<p>	
-		
-		<!-- searchbar -->
-		<div class="search-container">
-		<input type="text" id="search" placeholder="Search events, venues and location...">
-		<button onclick="searchEvents()">Search</button> <!-- Trigger 'searchEvents' function -->
-	    </div>
-	</header>
-	
-	<section class="events"> <!-- Section for listing upcoming events -->
-        <h2>Popular Upcoming Events</h2>
-        <div class="event-grid"> <!-- Grid layout for events -->
-		
-	        <!-- Example event 1 -->
-	        
-			<div class="event">
-                <img src="C:\Users\ire\OneDrive\Desktop\Coding\COMP208\images\concert-example.png" alt="Concert"> <!-- Event image -->
-                <h3>Live Music Concert</h3>
-                <p>March 15, 2025 | New York</p> <!-- Event date and location -->
-                <button>Event Details</button> <!-- Button for more details about the event -->
+
+    <!-- Bootstrap Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Event Booking</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" 
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Events</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Categories</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="btn btn-primary" href="#">Sign In</a>
+                    </li>
+                </ul>
             </div>
-			
-			<!-- Example event 2 -->
-			
-			<div class="event">
-			    <img src="C:\Users\ire\OneDrive\Desktop\Coding\COMP208\images\ballet-example.webp" alt="Ballet">
-				<h3>Swan Lake Ballet Performance</h3>
-				<p>May 8, 2025 | London</p>
-				<button>Event Details</button>
-			</div>
-			
-			<!-- Example event 3 -->
-			
-			<div class="event">
-			    <img src="C:\Users\ire\OneDrive\Desktop\Coding\COMP208\images\football-example.webp" alt="Football">
-				<h3>Football Game</h3>
-				<p>July 20, 2025 | Manchester</p>
-				<button>Event Details</button>
-			</div>
-		</div>
-	</section>
-	
-    <section class="categories"> <!-- Section for event categories -->
-        <h2>Browse by Category</h2>
-        <div class="category-grid"> <!-- Grid layout for category buttons -->
-            <div class="category">🎤 Concerts</div>
-            <div class="category">📷 Workshops</div>
-            <div class="category">🍔 Festivals</div>
-            <div class="category">🎭 Theater</div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero text-center p-5 bg-light">
+        <div class="container">
+            <h1>Website Name</h1>
+            <p>Discover concerts, competitions, and more near you.</p>
+
+            <!-- Search Bar -->
+            <div class="input-group mb-3 w-50 mx-auto">
+                <input type="text" class="form-control" placeholder="Search events, venues and location..." aria-label="Search">
+                <button class="btn btn-primary" onclick="searchEvents()">Search</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Upcoming Events Section -->
+    <section class="events container my-5">
+        <h2 class="text-center mb-4">Popular Upcoming Events</h2>
+        <div class="row">
+            <!-- Event 1 -->
+            <div class="col-md-4">
+                <div class="card">
+                    <img src="images/concert-example.png" class="card-img-top" alt="Concert">
+                    <div class="card-body">
+                        <h3 class="card-title">Live Music Concert</h3>
+                        <p class="card-text">March 15, 2025 | New York</p>
+                        <a href="#" class="btn btn-outline-primary">Event Details</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Event 2 -->
+            <div class="col-md-4">
+                <div class="card">
+                    <img src="images/ballet-example.webp" class="card-img-top" alt="Ballet">
+                    <div class="card-body">
+                        <h3 class="card-title">Swan Lake Ballet Performance</h3>
+                        <p class="card-text">May 8, 2025 | London</p>
+                        <a href="#" class="btn btn-outline-primary">Event Details</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Event 3 -->
+            <div class="col-md-4">
+                <div class="card">
+                    <img src="images/football-example.webp" class="card-img-top" alt="Football">
+                    <div class="card-body">
+                        <h3 class="card-title">Football Game</h3>
+                        <p class="card-text">July 20, 2025 | Manchester</p>
+                        <a href="#" class="btn btn-outline-primary">Event Details</a>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
-    <footer> <!-- Footer section with copyright text -->
-        <p>&copy; 2025 Event Booking. All Rights Reserved.</p> <!-- Copyright notice -->
+    <!-- Browse by Category Section -->
+    <section class="categories container my-5">
+        <h2 class="text-center mb-4">Browse by Category</h2>
+        <div class="row text-center">
+            <div class="col-md-3"><div class="p-3 bg-secondary text-white rounded">🎤 Concerts</div></div>
+            <div class="col-md-3"><div class="p-3 bg-secondary text-white rounded">📷 Workshops</div></div>
+            <div class="col-md-3"><div class="p-3 bg-secondary text-white rounded">🍔 Festivals</div></div>
+            <div class="col-md-3"><div class="p-3 bg-secondary text-white rounded">🎭 Theater</div></div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white text-center py-3">
+        <p>&copy; 2025 Event Booking. All Rights Reserved.</p>
     </footer>
-	
-	<script src="eventshome.js"></script> <!-- JavaScript file -->
-	
+
+    <!-- Bootstrap JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script src="eventshome.js"></script> <!-- JavaScript file -->
+    
 </body>
 </html>
