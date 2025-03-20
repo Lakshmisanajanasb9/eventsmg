@@ -1,0 +1,117 @@
+body {
+	font-family: Arial, sans-serif;
+	margin: 5;
+	padding: 0;
+	
+}
+
+.events h2 {
+    text-align: center
+}
+
+.hero {
+    background: url('hero-bg.jpg') no-repeat center center/cover; /* Sets background image */
+    color: #426b1f; 
+    padding: 10px 20px;
+	text-align: left
+	position: relative; /* Allows absolute positioning inside */
+    padding: 20px 40px; /* Adds spacing */
+}
+
+.hero h1 {
+    font-size: 2em;
+    margin-bottom: 10px; /* Adds space below title */
+}
+
+.hero input {
+    padding: 10px;
+    width: 60%;
+    margin: 10px 0;
+    border:2px solid black;
+	border-radius: 25px;
+	border-style: solid;
+}
+
+/* Search button */
+.hero button {
+    padding: 10px 20px; 
+    background: #426b1f; 
+    color: white;
+    border:none;
+    cursor: pointer; /* Changes cursor to pointer */
+    border-radius: 5px;
+}
+
+.search-container {
+    display: flex; /* Enables flexbox */
+    justify-content: center; /* Centers the search bar and button horizontally */
+    align-items: center; /* Aligns items vertically */
+    margin-top: 20px; /* Adds spacing from the title */
+    width: 100%;
+}
+
+.hero button:hover {
+    background: #445337;
+}
+
+.events {
+    padding: 40px 20px;
+}
+
+.event-grid {
+    display: flex; /* Uses flexbox */
+    justify-content: center; /* Centers the event cards */
+    gap: 20px; /* Adds space between event cards */
+}
+	
+.event {
+    background: #f4f4f4; /* Light gray background */
+    padding: 20px; /* Adds padding */
+    border-radius: 10px; /* Rounds the corners */
+    width: 250px; /* Sets fixed width */
+}
+
+.event img {
+    width: 100%; /* Makes the image fill the card */
+    border-radius: 10px; /* Rounds the corners */
+}
+	
+.event button {
+    background: #426b1f;
+    color: white;
+    padding: 10px;
+    border: none;
+    cursor: pointer; /* Changes cursor */
+    border-radius: 5px;
+}
+
+.event button:hover {
+    background: #445337;
+}
+
+footer {
+    background: #222; /* Dark background */
+    color: white; /* White text */
+    padding: 20px; /* Adds padding */
+    margin-top: 20px; /* Adds space above footer */
+}
+
+.sign-in {
+    background-color: #007bff; /* Blue background */
+    color: white; /* White text */
+    padding: 8px 15px; /* Adds padding */
+    border: none; /* Removes default border */
+    border-radius: 5px; /* Rounds corners */
+    cursor: pointer; /* Pointer cursor */
+    font-size: 16px; /* Font size */
+    position: absolute; /* Positions the button */
+    top: 20px; /* Distance from the top */
+    right: 40px;
+}
+
+.logo {
+    font-size: 30px; /* Adjust text size */
+    font-weight: bold; /* Make text bold */
+    color: #426b1f; /* Set text color */
+    text-decoration: none; /* Remove underline */
+}
