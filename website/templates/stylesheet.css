@@ -1,117 +1,192 @@
+/* General Body Styling */
 body {
-	font-family: Arial, sans-serif;
-	margin: 5;
-	padding: 0;
-	
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
 }
 
-.events h2 {
-    text-align: center
+/* Navbar Styling */
+.navbar {
+    padding: 15px 20px;
 }
 
+.navbar-brand {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #426b1f !important;
+}
+
+.navbar-nav .nav-link {
+    font-size: 1.1em;
+}
+
+.navbar .btn {
+    background-color: #007bff;
+    border-radius: 5px;
+    padding: 8px 15px;
+}
+
+.navbar .btn:hover {
+    background-color: #0056b3;
+}
+
+/* Hero Section */
 .hero {
-    background: url('hero-bg.jpg') no-repeat center center/cover; /* Sets background image */
-    color: #426b1f; 
-    padding: 10px 20px;
-	text-align: left
-	position: relative; /* Allows absolute positioning inside */
-    padding: 20px 40px; /* Adds spacing */
+    background: url('hero-bg.jpg') no-repeat center center/cover;
+    color: white;
+    text-align: center;
+    padding: 80px 20px;
+    position: relative;
 }
 
 .hero h1 {
-    font-size: 2em;
-    margin-bottom: 10px; /* Adds space below title */
+    font-size: 2.5em;
+    margin-bottom: 15px;
+}
+
+.hero p {
+    font-size: 1.2em;
+    margin-bottom: 20px;
+}
+
+/* Search Bar */
+.search-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    max-width: 600px;
+    margin: 0 auto;
 }
 
 .hero input {
     padding: 10px;
-    width: 60%;
-    margin: 10px 0;
-    border:2px solid black;
-	border-radius: 25px;
-	border-style: solid;
+    width: 70%;
+    border: 2px solid black;
+    border-radius: 25px;
 }
 
-/* Search button */
 .hero button {
-    padding: 10px 20px; 
-    background: #426b1f; 
+    padding: 10px 20px;
+    background: #426b1f;
     color: white;
-    border:none;
-    cursor: pointer; /* Changes cursor to pointer */
+    border: none;
+    cursor: pointer;
     border-radius: 5px;
-}
-
-.search-container {
-    display: flex; /* Enables flexbox */
-    justify-content: center; /* Centers the search bar and button horizontally */
-    align-items: center; /* Aligns items vertically */
-    margin-top: 20px; /* Adds spacing from the title */
-    width: 100%;
 }
 
 .hero button:hover {
     background: #445337;
 }
 
+/* Events Section */
 .events {
     padding: 40px 20px;
 }
 
-.event-grid {
-    display: flex; /* Uses flexbox */
-    justify-content: center; /* Centers the event cards */
-    gap: 20px; /* Adds space between event cards */
-}
-	
-.event {
-    background: #f4f4f4; /* Light gray background */
-    padding: 20px; /* Adds padding */
-    border-radius: 10px; /* Rounds the corners */
-    width: 250px; /* Sets fixed width */
+.events h2 {
+    text-align: center;
+    font-size: 2em;
+    margin-bottom: 30px;
 }
 
-.event img {
-    width: 100%; /* Makes the image fill the card */
-    border-radius: 10px; /* Rounds the corners */
+/* Bootstrap Cards Styling */
+.card {
+    border-radius: 10px;
+    overflow: hidden;
+    text-align: center;
+    background: #f4f4f4;
 }
-	
-.event button {
+
+.card img {
+    border-radius: 10px 10px 0 0;
+}
+
+.card-body {
+    padding: 20px;
+}
+
+.card-title {
+    font-size: 1.5em;
+}
+
+.card-text {
+    font-size: 1.1em;
+    color: #666;
+}
+
+.card .btn-outline-primary {
     background: #426b1f;
     color: white;
-    padding: 10px;
     border: none;
-    cursor: pointer; /* Changes cursor */
     border-radius: 5px;
+    padding: 10px;
 }
 
-.event button:hover {
+.card .btn-outline-primary:hover {
     background: #445337;
 }
 
-footer {
-    background: #222; /* Dark background */
-    color: white; /* White text */
-    padding: 20px; /* Adds padding */
-    margin-top: 20px; /* Adds space above footer */
+/* Category Section */
+.categories {
+    padding: 40px 20px;
+    text-align: center;
 }
 
+.categories h2 {
+    margin-bottom: 30px;
+}
+
+.category-grid {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.category {
+    background: #426b1f;
+    color: white;
+    padding: 15px 20px;
+    border-radius: 5px;
+    font-size: 1.2em;
+    cursor: pointer;
+}
+
+.category:hover {
+    background: #445337;
+}
+
+/* Footer */
+footer {
+    background: #222;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    margin-top: 20px;
+}
+
+/* Sign In Button */
 .sign-in {
-    background-color: #007bff; /* Blue background */
-    color: white; /* White text */
-    padding: 8px 15px; /* Adds padding */
-    border: none; /* Removes default border */
-    border-radius: 5px; /* Rounds corners */
-    cursor: pointer; /* Pointer cursor */
-    font-size: 16px; /* Font size */
-    position: absolute; /* Positions the button */
-    top: 20px; /* Distance from the top */
+    background-color: #007bff;
+    color: white;
+    padding: 8px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    position: absolute;
+    top: 20px;
     right: 40px;
 }
 
+.sign-in:hover {
+    background-color: #0056b3;
+}
+
+/* Logo */
 .logo {
-    font-size: 30px; /* Adjust text size */
-    font-weight: bold; /* Make text bold */
-    color: #426b1f; /* Set text color */
-    text-decoration: none; /* Remove underline */
+    font-size: 30px;
+    font-weight: bold;
+    color: #426b1f;
+    text-decoration: none;
 }
