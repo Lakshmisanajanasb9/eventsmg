@@ -8,11 +8,10 @@ body {
 /* Navbar Styling */
 .navbar {
     padding: 15px 20px;
-	/*color: #426b1f;*/
 }
 
 .custom-navbar {
-    background-color: #426b1f;
+    background-color: #386642;
 }
 
 .navbar-brand {
@@ -38,7 +37,7 @@ body {
 /* Hover effect */
 .custom-outline-btn:hover {
     background: white; /* White background on hover */
-    color: #426b1f; /* Green text */
+    color: #386642; /* Green text */
 }
 
 /* Hero Section */
@@ -81,7 +80,7 @@ body {
 
 .hero button {
     padding: 10px 20px;
-    background: #426b1f;
+    background: #386642;
     color: white;
     border: none;
     cursor: pointer;
@@ -157,7 +156,7 @@ body {
 }
 
 .category {
-    background: #426b1f;
+    background: #386642;
     color: white;
     padding: 15px 20px;
     border-radius: 5px;
@@ -200,6 +199,6 @@ footer {
 .logo {
     font-size: 30px;
     font-weight: bold;
-    color: #426b1f;
+    color: #386642;
     text-decoration: none;
 }
