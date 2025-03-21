@@ -43,6 +43,7 @@ body {
 
 /* Hero Section */
 .hero {
+	height: 600px;
     background: url("C:\Users\ire\OneDrive\Desktop\CODING\COMP208\New folder\eventsmg\website\templates\images\hero-concert") no-repeat center center/cover;
     color: #fefae0;
     text-align: center;
