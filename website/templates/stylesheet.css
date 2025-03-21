@@ -43,7 +43,7 @@ body {
 
 /* Hero Section */
 .hero {
-	height: 400px;
+	height: 600px;
     background: url("images/hero") no-repeat center center/cover;
     color: #fefae0;
     text-align: center;
