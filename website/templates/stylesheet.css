@@ -18,7 +18,7 @@ body {
 .navbar-brand {
     font-size: 1.5em;
     font-weight: bold;
-    color: white !important;
+    color: white;
 }
 
 .navbar-nav .nav-link {
@@ -26,18 +26,18 @@ body {
 }
 
 .custom-outline-btn {
-    color: white !important; /* White text */
-    border: 5px solid white !important; /* White outline */
-    border-radius: 25px !important; /* Rounded edges */
-    padding: 8px 20px !important; /* Adjust padding */
-    background: transparent !important; /* Transparent background */
+    color: white; /* White text */
+    border: 2px solid white; /* White outline */
+    border-radius: 25px; /* Rounded edges */
+    padding: 4px 10px; /* Adjust padding */
+    background: transparent; /* Transparent background */
     transition: 0.3s ease-in-out; /* Smooth hover effect */
 }
 
 /* Hover effect */
 .custom-outline-btn:hover {
-    background: white !important; /* White background on hover */
-    color: #426b1f !important; /* Green text */
+    background: white; /* White background on hover */
+    color: #426b1f; /* Green text */
 }
 
 /* Hero Section */
