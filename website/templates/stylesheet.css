@@ -3,7 +3,7 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-	background: black
+	background: #fefae0;
 }
 
 /* Navbar Styling */
@@ -44,7 +44,7 @@ body {
 /* Hero Section */
 .hero {
     background: url('hero-bg.jpg') no-repeat center center/cover;
-    color: white;
+    color: #fefae0;
     text-align: center;
     padding: 80px 20px;
     position: relative;
