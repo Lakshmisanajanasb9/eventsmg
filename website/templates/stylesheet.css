@@ -43,7 +43,7 @@ body {
 
 /* Hero Section */
 .hero {
-	height: 600px;
+	height: 400px;
     background: url("images/hero-concert.webp") no-repeat center center/cover;
     color: #fefae0;
     text-align: center;
