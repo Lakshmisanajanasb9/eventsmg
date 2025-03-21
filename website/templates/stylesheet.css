@@ -43,7 +43,7 @@ body {
 
 /* Hero Section */
 .hero {
-	min-height: 35vh; /*60% of viewport so collapsible*/
+	min-height: 20vh; /*60% of viewport so collapsible*/
     background: url("images/hero.jpg") no-repeat center center/cover;
     color: #fefae0;
     text-align: center;
