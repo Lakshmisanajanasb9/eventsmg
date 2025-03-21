@@ -12,7 +12,7 @@ body {
 }
 
 .custom-navbar {
-    background-color: #426b1f; /* Change to your desired color */
+    background-color: #426b1f;
 }
 
 .navbar-brand {
@@ -33,6 +33,21 @@ body {
 
 .navbar .btn:hover {
     background-color: #0056b3;
+}
+
+.custom-outline-btn {
+    color: white !important; /* White text */
+    border: 2px solid white !important; /* White outline */
+    border-radius: 25px !important; /* Rounded edges */
+    padding: 8px 20px !important; /* Adjust padding */
+    background: transparent !important; /* Transparent background */
+    transition: 0.3s ease-in-out; /* Smooth hover effect */
+}
+
+/* Hover effect */
+.custom-outline-btn:hover {
+    background: white !important; /* White background on hover */
+    color: #426b1f !important; /* Green text */
 }
 
 /* Hero Section */
