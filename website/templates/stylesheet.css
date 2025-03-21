@@ -43,13 +43,28 @@ body {
 
 /* Hero Section */
 .hero {
-	height: 600px;
+	width: 100%;
+	height: 60vh; /*60% of viewport so collapsible*/
     background: url("images/hero.jpg") no-repeat center center/cover;
     color: #fefae0;
     text-align: center;
-    padding: 80px 20px;
-	background-size: cover;
-    /*position: relative;*/
+    padding: 20px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+/* Adjust for smaller screens */
+@media (max-width: 768px) {
+    .hero {
+        height: 40vh; /* Smaller height on mobile */
+    }
+}
+
+@media (max-width: 480px) {
+    .hero {
+        height: 30vh; /* Even smaller on very small devices */
+    }
 }
 
 .hero h1 {
