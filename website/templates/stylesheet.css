@@ -3,6 +3,7 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
+	background: fefae0
 }
 
 /* Navbar Styling */
@@ -128,7 +129,7 @@ body {
 }
 
 .card .btn-outline-primary {
-    background: #426b1f;
+    background: #386642;
     color: white;
     border: none;
     border-radius: 5px;
