@@ -30,8 +30,9 @@ body {
     border: 2px solid white; /* White outline */
     border-radius: 25px; /* Rounded edges */
     padding: 4px 10px; /* Adjust padding */
-    background: transparent; /* Transparent background */
+    background: transparent;
     transition: 0.3s ease-in-out; /* Smooth hover effect */
+	font-size: 1.1em;
 }
 
 /* Hover effect */
