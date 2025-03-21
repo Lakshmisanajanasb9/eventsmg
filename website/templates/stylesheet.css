@@ -48,6 +48,7 @@ body {
     color: #fefae0;
     text-align: center;
     padding: 80px 20px;
+	background-size: cover;
     /*position: relative;*/
 }
 
