@@ -48,12 +48,21 @@ body {
     color: #fefae0;
     text-align: center;
     padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 /* Adjust for smaller screens */
 @media (max-width: 768px) {
     .hero {
         min-height: 30vh; /* Smaller height on mobile */
+    }
+}
+
+@media (max-width: 480px) {
+    .hero {
+        height: 60vh; /* Adjusts on mobile screens */
     }
 }
 
