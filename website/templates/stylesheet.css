@@ -255,8 +255,9 @@ footer {
 }
 
 .category-link img {
-    width: 100%; /* Makes images responsive */
-    height: 250px; /* Fixed height for uniform size */
+    width: 100%;
+	height: auto;
+    max-height: 250px; /* Fixed height for uniform size */
     object-fit: cover; /* Ensures images fill the area without distortion */
     border-radius: 10px;
     transition: transform 0.3s ease-in-out;
