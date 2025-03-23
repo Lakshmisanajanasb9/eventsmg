@@ -47,7 +47,7 @@ body {
 	width: 100vh;
 	min-height: 40vh; /*60% of viewport so collapsible*/
     background: url("images/hero.jpg") no-repeat center center/cover;
-	background-size: cover; /* Ensures the full image is visible */
+	background-size: center; /* Ensures the full image is visible */
     background-position: center;
     color: #fefae0;
     text-align: center;
