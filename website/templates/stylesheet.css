@@ -23,7 +23,6 @@ body {
 
 .navbar-nav .nav-link {
     font-size: 1.1em;
-	align-items: center;
 }
 
 .custom-outline-btn {
@@ -46,8 +45,8 @@ body {
 .hero {
     width: 100%;
     min-height: 100vh; /* Ensures full viewport height */
-    background: url('images/hero') no-repeat center center/cover;
-    background-size: contain; /* Ensures the full image is visible */
+    background: url('images/hero.jpg') no-repeat center center/cover;
+    background-size: cover; /* Ensures the full image is visible */
     background-position: center;
     color: white;
     display: flex;
@@ -97,7 +96,8 @@ body {
 
 .hero input {
     padding: 10px;
-    width: 70%;
+    width: 100%;
+	max-width: 500px;
     border: 2px solid black;
     border-radius: 25px;
 }
@@ -175,6 +175,7 @@ body {
 
 .category-grid {
     display: flex;
+	flex-wrap: wrap;
     justify-content: center;
     gap: 15px;
 }
