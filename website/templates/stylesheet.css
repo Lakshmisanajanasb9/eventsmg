@@ -44,7 +44,7 @@ body {
 
 /* Hero Section */
 .hero {
-	height: 600px;
+	min-height: 600px;
     background: url('images/hero') no-repeat center center/contain;
     background-size: contain; /* Ensures the full image is always visible */
     background-position: center;
