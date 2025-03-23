@@ -253,14 +253,14 @@ footer {
     font-weight: bold;
     text-align: center;
     width: 100%; /* Make it take the full width of its parent container */
-    max-width: 300px; /* Limit the width of the container (optional) */
+    max-width: 600px; /* Limit the width of the container (optional) */
     margin: 0 auto; /* Center the container horizontally */
 }
 
 .category-link img {
     width: 100%; /* Make image responsive */
     height: auto; /* Keep aspect ratio intact */
-    max-height: 250px; /* Limit the height */
+    max-height: 400px; /* Limit the height */
     object-fit: cover; /* Ensure the image fills the container without distortion */
     border-radius: 10px;
     transition: transform 0.3s ease-in-out;
