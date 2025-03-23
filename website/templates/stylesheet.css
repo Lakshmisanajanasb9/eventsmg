@@ -35,6 +35,14 @@ body {
 	font-size: 1.1em;
 }
 
+.btn {
+	color: white; /* White text */
+    padding: 4px 10px; /* Adjust padding */
+    background: transparent;
+    transition: 0.3s ease-in-out; /* Smooth hover effect */
+	font-size: 1.1em;
+}
+
 /* Hover effect */
 .custom-outline-btn:hover {
     background: white; /* White background on hover */
