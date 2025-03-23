@@ -136,6 +136,10 @@ body {
 
 .card img {
     border-radius: 10px 10px 0 0;
+    width: 100%; /* Makes images take the full width of the card */
+    height: 250px; /* Set a fixed height for all images */
+    object-fit: cover; /* Ensures the image fills the area without distortion */
+    border-radius: 10px 10px 0 0; /* Keeps rounded corners */
 }
 
 .card-body {
