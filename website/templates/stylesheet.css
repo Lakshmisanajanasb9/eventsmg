@@ -44,8 +44,6 @@ body {
 
 /* Hero Section */
 .hero {
-    width: 100vw;  /* Full width */
-    height: 80vh; /* Reduce height slightly so it fits */
     background: url('images/hero') no-repeat center center/contain;
     background-size: contain; /* Ensures the full image is always visible */
     background-position: center;
