@@ -45,9 +45,8 @@ body {
 /* Hero Section */
 .hero {
 	min-height: 600px;
-    background: url('images/hero') no-repeat center center/contain;
-    background-size: contain; /* Ensures the full image is always visible */
-    background-position: center;
+    background: url('images/hero') no-repeat center center;
+    background-size: cover; /* Ensures the full image is always visible */
     background-color: #fefae0; /* Match the page background color */
     display: flex;
     flex-direction: column;
