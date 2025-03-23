@@ -158,7 +158,7 @@ body {
 }
 
 .card-text {
-	font: horizon;
+	font: Helvetica, Verdana;
     font-size: 1.1em;
     color: #666;
 }
