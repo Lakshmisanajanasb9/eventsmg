@@ -44,17 +44,17 @@ body {
 
 /* Hero Section */
 .hero {
-	width: 100vh;
-	min-height: 40vh; /*60% of viewport so collapsible*/
-    background: url("images/hero.jpg") no-repeat center center/cover;
-	background-size: center; /* Ensures the full image is visible */
-    background-position: center;
-    color: #fefae0;
-    text-align: center;
-    padding: 10px;
+	width: 100vw;  /* Ensure it spans the entire width */
+    min-height: 100vh; /* Ensure full-screen height */
+    background: url('../images/hero-concert.webp') no-repeat center center/cover;
+    background-size: cover; /* Stretch to fill the space */
+    background-position: center; /* Keep the image centered */
     display: flex;
+    flex-direction: column; /* Stack items vertically */
     align-items: center;
     justify-content: center;
+    padding: 40px;
+    color: white; /* Ensure text remains readable */
 }
 
 /* Adjust for smaller screens */
@@ -85,11 +85,11 @@ body {
 /* Search Bar */
 .search-container {
     display: flex;
-    justify-content: center;
+    justify-content: center; /* Centers horizontally */
     align-items: center;
-    gap: 10px;
-    max-width: 600px;
-    margin: 20px auto;
+    width: 90%; /* Responsive width */
+    max-width: 600px; /* Prevents it from being too wide */
+    margin: 20px auto; /* Centers it */
 }
 
 .hero input {
