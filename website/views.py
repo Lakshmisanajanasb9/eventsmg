@@ -7,6 +7,9 @@ views = Blueprint('views' , __name__)
 def home():
     return render_template('eventshome.html')
 
+@views.route('/search', methods=['GET','POST'])
+def search():
+    return render_template('search.html')
 
 @views.route('/example', methods=['GET', 'POST'])
 def example():

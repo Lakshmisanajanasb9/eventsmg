@@ -8,14 +8,14 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
-    <link rel="stylesheet" href="stylesheet.css"> <!-- Link to custom CSS file -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='stylesheet.css')}}" type="text/css" > <!-- Link to custom CSS file -->
 </head>
 <body>
 
     <!-- Bootstrap Navbar -->
     <nav class="navbar navbar-expand-lg custom-navbar">
         <div class="container-fluid">
-            <a class="navbar-brand" href="eventshome.html">Website Name</a>
+            <a class="navbar-brand" href="{{ url_for('views.home') }}">Website Name</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" 
                     aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -23,7 +23,7 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a href="search.html" class="btn">Search</a>
+                        <a href="{{ url_for('views.search') }}" class="btn">Search</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link text-white" href="#">Orders</a>
@@ -60,7 +60,7 @@
             <!-- Event 1 -->
             <div class="col-md-4">
                 <div class="card">
-                    <img src="C:\Users\ire\OneDrive\Desktop\CODING\COMP208\New folder\eventsmg\website\templates\images\concert-example.png" class="card-img-top" alt="Concert">
+                    <img src= "{{ url_for('static', filename='images/concert-example.png')}}" class="card-img-top" alt="Concert">
                     <div class="card-body">
                         <h3 class="card-title">Live Music Concert</h3>
                         <p class="card-text">March 15, 2025 | New York</p>
@@ -72,7 +72,7 @@
             <!-- Event 2 -->
             <div class="col-md-4">
                 <div class="card">
-                    <img src="C:\Users\ire\OneDrive\Desktop\CODING\COMP208\New folder\eventsmg\website\templates\images\ballet-example.webp" class="card-img-top" alt="Ballet">
+                    <img src="{{ url_for('static',filename='images/ballet-example.webp')}}" class="card-img-top" alt="Ballet">
                     <div class="card-body">
                         <h3 class="card-title">Swan Lake Ballet Performance</h3>
                         <p class="card-text">May 8, 2025 | London</p>
@@ -84,7 +84,7 @@
             <!-- Event 3 -->
             <div class="col-md-4">
                 <div class="card">
-                    <img src="C:\Users\ire\OneDrive\Desktop\CODING\COMP208\New folder\eventsmg\website\templates\images\football-example.webp" class="card-img-top" alt="Football">
+                    <img src="{{ url_for('static',filename = 'images/football-example.webp')}}" class="card-img-top" alt="Football">
                     <div class="card-body">
                         <h3 class="card-title">Football Game</h3>
                         <p class="card-text">July 20, 2025 | Manchester</p>
