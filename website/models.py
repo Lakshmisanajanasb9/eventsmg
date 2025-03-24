@@ -26,6 +26,7 @@ class Event(db.Model):
     date = db.Column(db.DateTime, nullable=False)
     description = db.Column(db.Text)
     ticket_price = db.Column(db.Numeric(10, 2), nullable=False)
+    available_seats = db.Column(db.Integer, nullable=False)
     #relations
     category_id = db.Column(db.Integer, db.ForeignKey('category.category_id'), nullable=True)
     category = db.relationship('Category', backref='events')

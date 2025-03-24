@@ -48,3 +48,27 @@ def book_event():
     db.session.commit()
 
     return jsonify({'message': 'Booking successful', 'event': event.name, 'tickets_booked': num_tickets}), 200
+
+@views.route('/cancel-booking', methods=['POST'])
+def cancel_booking():
+    data = request.get_json()
+    booking_id = data.get('booking_id')
+
+    if not booking_id:
+        return jsonify({'error': 'Booking ID is required'}), 400
+
+    # Find the booking
+    booking = Booking.query.get(booking_id)
+    if not booking:
+        return jsonify({'error': 'Booking not found'}), 404
+
+    # Find the event and restore available seats
+    event = Event.query.get(booking.event_id)
+    if event:
+        event.available_seats += booking.num_tickets  # Restore the seats
+
+    # Remove the booking
+    db.session.delete(booking)
+    db.session.commit()
+
+    return jsonify({'message': 'Booking canceled successfully'}), 200
