@@ -1,4 +1,4 @@
-from flask import render_template,request,flash,redirect,url_for,Blueprint
+from flask import render_template,request,flash,redirect,url_for,Blueprint,Session
 from .models import User
 from . import db
 from flask_login import logout_user,login_required,login_user
@@ -19,7 +19,7 @@ def register():
 
         user = User.query.filter_by(email=email).first()    
         if user:
-            flash("email already exists",category='error')
+           lash("email already exists",category='error')
             return redirect(url_for('register'))
         
         with db.Session(db.engine) as session:
