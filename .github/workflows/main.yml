@@ -20,9 +20,7 @@ jobs:
           python -m venv venv 
           source venv/bin/activate 
           pip install --upgrade pip 
-          pip install pytest
-          pip install flask
-          pip install flask_sqlalchemy
+          pip install -r requirements.txt
 
       - name: Set PYTHONPATH
         run: |
