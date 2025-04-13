@@ -15,7 +15,7 @@ def test_new_user():
         phone='07909756744',
         location='Chicago'
     )
-    assert customer.customer_id == '1'
+    assert customer.customer_id == 1
     assert customer.first_name == 'John'
     assert customer.last_name == 'Cena'
     assert customer.email == 'johncena123@gmail.com'
