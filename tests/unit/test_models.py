@@ -1,4 +1,4 @@
-from website.models import User
+from website.models import Customer
 
 def test_new_user():
     """
@@ -7,6 +7,11 @@ def test_new_user():
     Then check email,hashed password and role fields are defined correctly
     """
 
-    user = User('patkenny70@gmail.com','FlaskisAwesome')
-    assert user.email == 'patkenny70@gmail.com'
-    assert user.hashed_password != 'FlaskisAwesome'
+    customer = Customer('1','John','Cena','johncena123@gmail.com','07909756744','Chicage')
+    assert customer.customer_id == '1'
+    assert customer.first_name == 'John'
+    assert customer.last_name == 'Cena'
+    assert customer.email == 'johncena123@gmail.com'
+    assert customer.phone == '07909756744'
+    assert customer.location == 'Chicago'
+
