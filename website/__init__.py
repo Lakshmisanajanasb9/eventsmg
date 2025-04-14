@@ -1,6 +1,6 @@
 from flask import Flask
-
 from flask_sqlalchemy import SQLAlchemy
+
 db = SQLAlchemy()  
 
 def create_app():
@@ -16,6 +16,8 @@ def create_app():
         db.create_all()
 
     from .views import views
+    from .routes.auth import auth
     app.register_blueprint(views, url_prefix='/')
+    app.register_blueprint(auth)
 
     return app
