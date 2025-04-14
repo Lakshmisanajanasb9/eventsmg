@@ -1,13 +1,13 @@
-from flask import render_template,request,flash,redirect,url_for,Blueprint,Session
-from .models import User
-from . import db
+from flask import render_template,request,flash,redirect,url_for,Blueprint
+from website.models import Customer
+from website import db
 from flask_login import logout_user,login_required,login_user
 from werkzeug.security import generate_password_hash,check_password_hash
 
-forms = Blueprint('forms', __name__)
+auth = Blueprint('auth', __name__)
 
 #registration page route
-@forms.route('/register', methods =["POST","GET"])
+@auth.route('/register', methods =["POST","GET"])
 def register():
     if request.method == "POST":
 
@@ -19,7 +19,7 @@ def register():
 
         user = User.query.filter_by(email=email).first()    
         if user:
-           lash("email already exists",category='error')
+            flash("email already exists",category='error')
             return redirect(url_for('register'))
         
         with db.Session(db.engine) as session:
@@ -34,7 +34,7 @@ def register():
 
 
 #login page route
-@forms.route('/login',methods=['GET','POST'])
+@auth.route('/login',methods=['GET','POST'])
 def login():
     if request.method == "POST":
         email=request.form.get('email') 
@@ -52,7 +52,7 @@ def login():
 
 
 #logout page route
-@forms.route('/logout',methods=[ 'POST'])
+@auth.route('/logout',methods=[ 'POST'])
 @login_required
 def logout():
     logout_user()
