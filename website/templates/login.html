@@ -30,11 +30,7 @@
                         <a class="nav-link text-white" href="#">Profile</a>
                     </li>
                     <li class="nav-item">
-<<<<<<< HEAD
-                        <a href="{{ url_for('views.login') }}">Sign In / Up</a>
-=======
-                        <<a href="{{ url_for('auth.login') }}">Sign In / Up</a>
->>>>>>> ea36e70 (fix for logins)
+                        <a href="{{ url_for('auth.login') }}">Sign In / Up</a>
                     </li>
                 </ul>
             </div>
@@ -79,7 +75,7 @@
         </ul>
 
         <!-- Login Form -->
-        <form id="loginForm" method="POST" action="{{ url_for('forms.login') }}" class="auth-form">
+        <form id="loginForm" method="POST" action="{{ url_for('auth.login') }}" class="auth-form">
             <fieldset>
                 <div class="mb-3">
                     <label for="loginEmail">Email:</label>
@@ -97,7 +93,7 @@
         </form>
 
         <!-- Register Form -->
-        <form id="registerForm" class="auth-form d-none" method="POST" action="{{ url_for('forms.register') }}">
+        <form id="registerForm" class="auth-form d-none" method="POST" action="{{ url_for('auth.register') }}">
             <fieldset>
                 <div class="mb-3">
                     <label for="registerFirstName">First Name:</label>
