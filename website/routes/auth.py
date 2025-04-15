@@ -33,10 +33,10 @@ def register():
         db.session.add(new_user)
         db.session.commit()
 
-        flash("Registration complete.Please login","success")
-        return redirect(url_for("login"))
+        flash("Registration complete","success")
+        return redirect(url_for("views.home"))
 
-    return render_template('register.html')
+    return render_template('auth.register')
 
 
 #login page route

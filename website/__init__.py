@@ -8,6 +8,7 @@ def create_app():
 
     app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///events.db'
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+    app.secret_key = "supersecretkey"
 
     db.init_app(app)
 
@@ -17,7 +18,9 @@ def create_app():
 
     from .views import views
     from .routes.auth import auth
+    from .routes.events import events
     app.register_blueprint(views, url_prefix='/')
-    app.register_blueprint(auth)
+    app.register_blueprint(auth, url_prefix='/')
+    app.register_blueprint(events, url_prefix='/')
 
     return app
