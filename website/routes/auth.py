@@ -38,24 +38,22 @@ def register():
 
     return render_template('auth.register')
 
-
 #login page route
 @auth.route('/login',methods=['GET','POST'])
 def login():
     if request.method == "POST":
         email=request.form.get('email') 
         password=request.form.get('password')
-        with db.Session(db.engine) as session:
-            user = User.query.filter_by(email=email).first()
+
+        user = Customer.query.filter_by(email=email).first()
 
         if user and check_password_hash(user.password,password):
             login_user(user)
-            return redirect(url_for('home'))
+            return redirect(url_for('views.home'))
         else:
             flash('Invalid email or password', category='error')
 
     return render_template('login.html')
-
 
 #logout page route
 @auth.route('/logout',methods=[ 'POST'])
