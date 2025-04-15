@@ -11,21 +11,27 @@ auth = Blueprint('auth', __name__)
 def register():
     if request.method == "POST":
 
+        first_name = request.form.get("first_name")
+        last_name = request.form.get("last_name")
+        phone_number = request.form.get("phone")
         email = request.form.get("email")
         password = request.form.get("password")
 
-        with db.Session(db.engine) as session:
-            user = session.query(db.User).filter_by(email=email).first()
+        user = Customer.query.filter_by(email=email).first()    
 
-        user = User.query.filter_by(email=email).first()    
         if user:
             flash("email already exists",category='error')
             return redirect(url_for('register'))
-        
-        with db.Session(db.engine) as session:
-            new_user = db.User(email=email,password=generate_password_hash(password))
-            session.add(new_user)
-            session.commit()
+
+        new_user = Customer(
+            first_name=first_name,
+            last_name=last_name,
+            email=email,
+            phone=phone_number,
+            password=generate_password_hash(password),
+        )
+        db.session.add(new_user)
+        db.session.commit()
 
         flash("Registration complete.Please login","success")
         return redirect(url_for("login"))
