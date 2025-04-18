@@ -17,10 +17,14 @@ def register():
         email = request.form.get("email")
         password = request.form.get("password")
 
-        user = Customer.query.filter_by(email=email).first()    
+        user_email = Customer.query.filter_by(email=email).first()    
+        user_phone = Customer.query.filter_by(phone=phone_number).first()
 
-        if user:
+        if user_email:
             flash("email already exists",category='error')
+            return redirect(url_for('register'))
+        if user_phone:
+            flash("phone is already linked to other account",catergory='error')
             return redirect(url_for('register'))
 
         new_user = Customer(
