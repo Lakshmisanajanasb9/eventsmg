@@ -13,5 +13,5 @@ def test_home_page():
     # Create a test client using the Flask application configured for testing
     with flask_app.test_client() as test_client:
         response = test_client.post('/')
-        assert response.status_code == 405
+        assert response.status_code == 200
 

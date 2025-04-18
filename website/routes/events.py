@@ -35,7 +35,6 @@ def book_event():
 
     return jsonify({'message': 'Booking successful', 'event': event.name, 'tickets_booked': num_tickets}), 200
 
-
 @events.route('/cancel-booking', methods=['POST'])
 def cancel_booking():
     data = request.get_json()
