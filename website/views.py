@@ -13,7 +13,7 @@ def search():
 
 @views.route('/test', methods=['GET','POST'])
 def test():
-    return render_template('organizer.html')
+    return render_template('organizer/organizer.html')
 
 
 events_data = [

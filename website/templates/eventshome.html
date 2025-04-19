@@ -22,6 +22,7 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
+                {% block navbar %}
                     <li class="nav-item">
                         <a href="{{ url_for('views.search') }}" class="btn">Search</a>
                     </li>
@@ -34,6 +35,7 @@
                     <li class="nav-item">
                         <a href="{{ url_for('auth.login') }}">Sign In / Up</a>
                     </li>
+                 {% endblock %}
                 </ul>
             </div>
         </div>

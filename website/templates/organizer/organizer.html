@@ -1,0 +1,46 @@
+{% extends "eventshome.html" %}
+{% block head %}
+    {{ super() }}
+{% endblock %}
+
+{% block navbar %}
+<!--Organizer Navbar-->
+<li class="nav-item">
+    <a class="nav-link text-white" href="{{ url_for('views.search') }}">Events</a>
+</li>
+<li class="nav-item">
+    <a class="nav-link text-white" href="#">Orders</a>
+</li>
+<li class="nav-item">
+    <a class="nav-link text-white" href="{{ url_for('auth.login') }}">Organization Settings</a>
+</li>
+
+<!-- User Profile Dropdown -->
+<div class="ms-auto d-flex align-items-center">
+<div class="dropdown">
+  <a class="d-flex align-items-center text-decoration-none dropdown-toggle" href="#" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+    <span class="d-none d-sm-inline">John Doe</span>
+  </a>
+  <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+    <li><a class="dropdown-item" href="#">Profile</a></li>
+    <li><a class="dropdown-item" href="#">Settings</a></li>
+    <li><hr class="dropdown-divider"></li>
+    <li><a class="dropdown-item" href="#">Logout</a></li>
+  </ul>
+</div>
+</div>
+
+{% endblock %}
+{% block content %}
+  <div class="container my-5">
+    <div class="card shadow-lg border-0 rounded-4">
+      <div class="card-body p-5">
+        <h2 class="card-title mb-3">Create an Event</h2>
+        <p class="text-muted mb-4">
+          Add all your event details, create new tickets.
+        </p>
+        <button class="btn btn-primary btn-lg">Create Event</button>
+      </div>
+    </div>
+  </div>
+{% endblock %}
