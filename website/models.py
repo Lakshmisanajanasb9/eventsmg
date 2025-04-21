@@ -1,7 +1,8 @@
 from . import db
+from flask_login import UserMixin
 
-class Customer(db.Model):
-    customer_id = db.Column(db.Integer,primary_key=True)
+class Customer(db.Model, UserMixin):
+    id = db.Column(db.Integer,primary_key=True)
     first_name = db.Column(db.String(50))
     last_name = db.Column(db.String(50))
     email = db.Column(db.String(120),unique=True)
@@ -55,7 +56,7 @@ class Performer(db.Model):
 class Booking(db.Model):
     __tablename__ = 'booking'
     booking_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    customer_id = db.Column(db.Integer, db.ForeignKey('customer.customer_id'), nullable=False)
+    customer_id = db.Column(db.Integer, db.ForeignKey('customer.id'), nullable=False)
     event_id = db.Column(db.Integer, db.ForeignKey('event.event_id'), nullable=False)
     num_tickets = db.Column(db.Integer, nullable=False)
     total_price = db.Column(db.Numeric(10, 2), nullable=False)
@@ -67,7 +68,7 @@ class Booking(db.Model):
 class Review(db.Model):
     __tablename__ = 'review'
     review_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    customer_id = db.Column(db.Integer, db.ForeignKey('customer.customer_id'), nullable=False)
+    customer_id = db.Column(db.Integer, db.ForeignKey('customer.id'), nullable=False)
     event_id = db.Column(db.Integer, db.ForeignKey('event.event_id'), nullable=True)  # Optional
     venue_id = db.Column(db.Integer, db.ForeignKey('venue.venue_id'), nullable=True)  # Optional
     performer_id = db.Column(db.Integer, db.ForeignKey('performer.performer_id'), nullable=True)  # Optional
@@ -78,7 +79,7 @@ class Review(db.Model):
 class Order(db.Model):
     __tablename__ = 'order'
     order_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    customer_id = db.Column(db.Integer, db.ForeignKey('customer.customer_id'), nullable=False)
+    customer_id = db.Column(db.Integer, db.ForeignKey('customer.id'), nullable=False)
     event_id = db.Column(db.Integer, db.ForeignKey('event.event_id'), nullable=False)
     num_tickets = db.Column(db.Integer, nullable=False)
     total_price = db.Column(db.Numeric(10,2), nullable=False)

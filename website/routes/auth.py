@@ -1,4 +1,4 @@
-from flask import render_template,request,flash,redirect,url_for,Blueprint
+from flask import render_template,request,flash,redirect,url_for,Blueprint,session
 from website.models import Customer
 from website import db
 from flask_login import logout_user,login_required,login_user
@@ -36,6 +36,7 @@ def register():
         )
         db.session.add(new_user)
         db.session.commit()
+        login_user(new_user, remember=True)
 
         flash("Registration complete","success")
         return redirect(url_for("views.home"))
@@ -51,6 +52,8 @@ def login():
 
         user = Customer.query.filter_by(email=email).first()
 
+        session['email'] = email
+
         if user and check_password_hash(user.password,password):
             login_user(user)
             return redirect(url_for('views.home'))
@@ -63,5 +66,6 @@ def login():
 @auth.route('/logout',methods=[ 'POST'])
 @login_required
 def logout():
+    session.pop('email',None)
     logout_user()
     return redirect(url_for('forms.login'))
