@@ -52,8 +52,6 @@ def login():
 
         user = Customer.query.filter_by(email=email).first()
 
-        session['email'] = email
-
         if user and check_password_hash(user.password,password):
             login_user(user)
             return redirect(url_for('views.home'))
@@ -63,9 +61,8 @@ def login():
     return render_template('login.html')
 
 #logout page route
-@auth.route('/logout',methods=[ 'POST'])
+@auth.route('/logout',methods=['GET','POST'])
 @login_required
 def logout():
-    session.pop('email',None)
     logout_user()
-    return redirect(url_for('forms.login'))
+    return render_template('login.html')

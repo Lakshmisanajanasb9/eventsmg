@@ -15,7 +15,7 @@
     <!-- Bootstrap Navbar -->
     <nav class="navbar navbar-expand-lg custom-navbar">
         <div class="container-fluid">
-            <a class="navbar-brand" href="{{ url_for('views.home') }}">Website Name</a>
+            <a class="navbar-brand" href="{{ url_for('views.home') }}">EventMG</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" 
                     aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -24,17 +24,34 @@
                 <ul class="navbar-nav ms-auto">
                 {% block navbar %}
                     <li class="nav-item">
-                        <a href="{{ url_for('views.search') }}" class="btn">Search</a>
+                        <a class="nav-link text-white"  href="{{ url_for('views.search') }}" >Search</a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{ url_for('views.buyTicket') }}" class="btn">Payment</a>
-                    </li>
+                        <a class ="nav-link text-white" href="{{ url_for('views.buyTicket') }}" >Payment</a>
+                   </li>
                     <li class="nav-item">
                         <a class="nav-link text-white" href="#">Profile</a>
                     </li>
-                    <li class="nav-item">
-                        <a href="{{ url_for('auth.login') }}">Sign In / Up</a>
-                    </li>
+                    {% if current_user.is_authenticated %}
+                        <div class="ms-auto d-flex align-items-center">
+                        <div class="dropdown">
+                            <a class="d-flex align-items-center text-decoration-none dropdown-toggle" href="#" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                                <span class="d-none d-sm-inline">{{ current_user.first_name }} {{ current_user.last_name }} </span>
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                                <li><a class="dropdown-item" href="#">Profile</a></li>
+                                <li><a class="dropdown-item" href="{{ url_for('admin.admin_home') }}">Manage events</a></li>
+                                <li><a class="dropdown-item" href="#">Settings</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item" href="{{ url_for('auth.logout') }}">Logout</a></li>
+                            </ul>
+                        </div>
+                        </div>
+                    {% else %}
+                        <li class="nav-item">
+                            <a href="{{ url_for('auth.login') }}">Sign In / Up</a>
+                        </li>
+                    {% endif %}
                  {% endblock %}
                 </ul>
             </div>
