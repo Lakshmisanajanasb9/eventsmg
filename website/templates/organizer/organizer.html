@@ -14,23 +14,11 @@
 <li class="nav-item">
     <a class="nav-link text-white" href="{{ url_for('auth.login') }}">Settings</a>
 </li>
-
-<!-- User Profile Dropdown -->
-<div class="ms-auto d-flex align-items-center">
-<div class="dropdown">
-  <a class="d-flex align-items-center text-decoration-none dropdown-toggle" href="#" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-    <span class="d-none d-sm-inline">John Doe</span>
-  </a>
-  <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
-    <li><a class="dropdown-item" href="#">Profile</a></li>
-    <li><a class="dropdown-item" href="#">Settings</a></li>
-    <li><hr class="dropdown-divider"></li>
-    <li><a class="dropdown-item" href="#">Logout</a></li>
-  </ul>
-</div>
-</div>
-
 {% endblock %}
+{% block adminState %}
+    <li><a class="dropdown-item" href="{{ url_for('views.home') }}">Return to Exploring Events</a></li>
+{% endblock %}
+
 {% block content %}
   <div class="container my-5">
     <div class="card shadow-lg border-0 rounded-4">
@@ -42,5 +30,50 @@
         <button class="btn btn-primary btn-lg">Create Event</button>
       </div>
     </div>
+    <div class="container my-5">
+  <div class="card shadow border-0 rounded-4">
+    <div class="card-body p-5">
+      <p class="text-uppercase text-muted small mb-1">Your checklist</p>
+      <p class="fs-5 text-secondary mb-4">Here's how to start!</p>
+
+      <!-- Checklist item -->
+      <a href="/manage/events/1331706924259/details" class="text-decoration-none text-dark">
+        <div class="d-flex justify-content-between align-items-start border rounded p-3 mb-3 hover-shadow">
+          <div class="d-flex">
+           <div class="ms-auto text-start">
+              <div class="fw-bold">Create event</div>
+              <div class="text-muted small">Publish an event to reach millions of people</div>
+            </div>
+          </div>
+        </div>
+      </a>
+
+      <!-- Checklist item -->
+      <a href="/organizations/info/profile/110217653451" class="text-decoration-none text-dark">
+        <div class="d-flex justify-content-between align-items-start border rounded p-3 mb-3 hover-shadow">
+          <div class="d-flex">
+           <div class="ms-auto text-start">
+              <div class="fw-bold">Set up your organizer profile</div>
+              <div class="text-muted small">Highlight your brand by adding your organizer name, image, and bio.</div>
+            </div>
+          </div>
+        </div>
+      </a>
+
+      <!-- Checklist item -->
+      <a href="/organizations/finance-settings/bank-accounts" class="text-decoration-none text-dark">
+        <div class="d-flex justify-content-between align-items-start border rounded p-3 mb-3 hover-shadow">
+          <div class="d-flex">
+           <div class="ms-auto text-start">
+              <div class="fw-bold">Add your bank account</div>
+              <div class="text-muted small">Get paid for future ticket sales by entering your bank details.</div>
+            </div>
+          </div>
+        </div>
+      </a>
+
+    </div>
   </div>
+</div>
+</div>
 {% endblock %}
