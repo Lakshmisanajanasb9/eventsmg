@@ -1,16 +1,20 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
+import stripe,os
+from dotenv import load_dotenv
 
-db = SQLAlchemy()  
+db = SQLAlchemy() 
 
 def create_app():
     app = Flask(__name__)
 
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///events.db'
+    load_dotenv()
+
+    app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL') 
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
     app.secret_key = "supersecretkey"
-
+    stripe.api_key = os.environ.get('STRIPE_SECRET_KEY')
     db.init_app(app)
 
     # This line will create the event table if it doesn't exist already
