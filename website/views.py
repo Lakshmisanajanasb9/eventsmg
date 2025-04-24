@@ -11,6 +11,10 @@ def home():
 def search():
     return render_template('search.html')
 
+@views.route('/profile',methods=['GET','POST'])
+def profile():
+    return render_template('profile.html')
+
 @views.route('/buyTicket', methods=['GET','POST'])
 def buyTicket():
     return render_template('buyTicket.html')

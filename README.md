@@ -7,3 +7,7 @@ Setup :
     
 To run:
     `gunicorn run:app`
+
+- [ ] payment
+- [ ] categories filter and search bar for location
+- [ ] create event

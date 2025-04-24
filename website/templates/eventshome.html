@@ -24,14 +24,11 @@
                 <ul class="navbar-nav ms-auto">
                 {% block navbar %}
                     <li class="nav-item">
-                        <a class="nav-link text-white"  href="{{ url_for('views.search') }}" >Search</a>
+                        <a class="nav-link text-white"  href="{{ url_for('views.search') }}" >Categories</a>
                     </li>
                     <li class="nav-item">
                         <a class ="nav-link text-white" href="{{ url_for('views.buyTicket') }}" >Payment</a>
                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-white" href="#">Profile</a>
-                    </li>
                     {% endblock %}
                     {% if current_user.is_authenticated %}
                         <div class="ms-auto d-flex align-items-center">
