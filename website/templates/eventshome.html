@@ -37,7 +37,7 @@
                                 <span class="d-none d-sm-inline">{{ current_user.first_name }} {{ current_user.last_name }} </span>
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
-                                <li><a class="dropdown-item" href="#">Profile</a></li>
+                                <li><a class="dropdown-item" href="{{ url_for('views.profile') }}">Profile</a></li>
                                 {% block adminState %}
                                 <li><a class="dropdown-item" href="{{ url_for('admin.admin_home') }}">Manage events</a></li>
                                 {% endblock %}
