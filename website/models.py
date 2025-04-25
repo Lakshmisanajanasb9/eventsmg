@@ -1,5 +1,7 @@
 from . import db
+from itsdangerous import URLSafeTimedSerializer
 from flask_login import UserMixin
+from flask import current_app
 
 class Customer(db.Model, UserMixin):
     id = db.Column(db.Integer,primary_key=True)
@@ -13,6 +15,19 @@ class Customer(db.Model, UserMixin):
     #bookings = db.relationship('booking',backref='customer')
     #reviews = db.relationship('review',backref='customer')
     #orders = db.relationship('order',backref ='customer')
+
+    def get_reset_token(self, expires_sec=1800):
+        s = URLSafeTimedSerializer(current_app.config['SECRET_KEY'])
+        return s.dumps({'customer_id': self.id}, salt='password-reset')
+
+    @staticmethod
+    def verify_reset_token(token, expires_sec=1800):
+        s = URLSafeTimedSerializer(current_app.config['SECRET_KEY'])
+        try:
+            customer_id = s.loads(token, salt='password-reset', max_age=expires_sec)['customer_id']
+        except Exception:
+            return None
+        return Customer.query.get(customer_id)
 
 class Category(db.Model):
     __tablename__ = 'category'

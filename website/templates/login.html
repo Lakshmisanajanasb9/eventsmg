@@ -89,6 +89,9 @@
                 <div class="text-center mt-2">
                     <a href="#" id="switchToRegister" class="link-danger">Create Account</a>
                 </div>
+                <div class="text-center mt-2">
+                    <a href="{{ url_for('auth.reset_request') }}" class="link-danger">Forgot Password?</a>
+                </div>
             </fieldset>
         </form>
 
@@ -117,7 +120,7 @@
                 </div>
                 <button type="submit" class="btn auth-btn w-100">Register</button>
                 <div class="text-center mt-2">
-                    <a href="#" id="switchToLogin" class="link-danger">Already have an account?</a>
+                    <a href="" id="switchToLogin" class="link-danger">Already have an account?</a>
                 </div>
             </fieldset>
         </form>

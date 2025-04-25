@@ -1,8 +1,11 @@
 from flask import render_template,request,flash,redirect,url_for,Blueprint,session
 from website.models import Customer
-from website import db
+from website import db,mail
 from flask_login import logout_user,login_required,login_user
 from werkzeug.security import generate_password_hash,check_password_hash
+from website.forms.auth_forms import ResetRequestForm,ResetPasswordForm
+from flask_mail import Message
+
 
 auth = Blueprint('auth', __name__)
 
@@ -66,3 +69,52 @@ def login():
 def logout():
     logout_user()
     return render_template('login.html')
+
+def send_reset_email(user):
+    token = user.get_reset_token()
+    msg = Message("Password Reset Request",
+                  sender="noreply@yourdomain.com",
+                  recipients=[user.email])
+    reset_url = url_for('auth.reset_token', token=token, _external=True)
+    msg.body = f'''To reset your password, visit the following link:
+{reset_url}
+
+If you did not make this request, simply ignore this email.
+'''
+    mail.send(msg)
+
+@auth.route('/reset_password', methods=['GET', 'POST'])
+def reset_request():
+    form = ResetRequestForm()
+    if form.validate_on_submit():
+        user = Customer.query.filter_by(email=form.email.data).first()
+        if user:
+            send_reset_email(user)  # same as before
+        flash('If that email exists, you will receive a reset link shortly.', 'info')
+        return redirect(url_for('auth.login'))
+    return render_template('reset_request.html', form=form)
+
+@auth.route('/reset_password/<token>', methods=['GET', 'POST'])
+def reset_token(token):
+    user = Customer.verify_reset_token(token)
+    if not user:
+        flash('Invalid or expired token', 'danger')
+        return redirect(url_for('auth.reset_request'))
+
+    form = ResetPasswordForm()
+    if form.validate_on_submit():
+        user.password = generate_password_hash(form.password.data)
+        db.session.commit()
+        flash('Password updated! You can now log in.', 'success')
+        return redirect(url_for('auth.login'))
+
+    return render_template('reset_token.html', form=form)
+
+
+
+
+
+
+
+
+
