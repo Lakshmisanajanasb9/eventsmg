@@ -11,6 +11,7 @@ class Customer(db.Model, UserMixin):
     phone = db.Column(db.String(20),unique = True)
     location = db.Column(db.String(255))
     password = db.Column(db.String(255))
+    stripe_customer_id = db.Column(db.String(100))
      # relations
     #bookings = db.relationship('booking',backref='customer')
     #reviews = db.relationship('review',backref='customer')

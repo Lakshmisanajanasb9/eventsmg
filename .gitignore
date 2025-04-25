@@ -16,7 +16,7 @@ __pycache__/
 
 # Virtual environments
 venv/
-env/
+#env/
 .venv/
 
 # Flask specific
@@ -44,8 +44,8 @@ build/
 Thumbs.db
 
 # Environment/config
-.env
-.env.*
+#.env
+#.env.*
 
 # Testing
 coverage/

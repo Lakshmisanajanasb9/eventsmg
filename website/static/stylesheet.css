@@ -294,3 +294,8 @@ footer {
     color: #fff;
     border-radius: 25px;
 }
+
+.nav-separator {
+  color: rgba(255,255,255,0.5); /* light gray on dark navbar */
+  line-height: 1.5;
+}
