@@ -1,0 +1,92 @@
+{% extends "organizer/organizer.html" %}
+
+{% block head %}
+    {{ super() }}
+{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="card shadow-lg p-4">
+        <h2 class="mb-4 text-center">Create New Event</h2>
+        <form action="{{ url_for('events.create_event') }}" method="POST" enctype="multipart/form-data">
+            <div class="mb-3">
+                <label for="title" class="form-label">Event Title</label>
+                <input type="text" class="form-control" id="title" name="title" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="description" class="form-label">Description</label>
+                <textarea class="form-control" id="description" name="description" rows="4" required></textarea>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label for="date" class="form-label">Date</label>
+                    <input type="date" class="form-control" id="date" name="date" required>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label for="time" class="form-label">Time</label>
+                    <input type="time" class="form-control" id="time" name="time" required>
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label for="location" class="form-label">Location</label>
+                <input type="text" class="form-control" id="location" name="location" required>
+            </div>
+            <div class="mb-3">
+                <label for="venue_id" class="form-label">Venue</label>
+                <select class="form-select" id="venue_id" name="venue_id" onchange="toggleNewVenue(this)">
+                    <option disabled selected>Select Venue</option>
+                    {% for venue in venues %}
+                        <option value="{{ venue.venue_id }}">{{ venue.name }}</option>
+                    {% endfor %}
+                    <option value="new">Add new venue</option>
+                </select>
+                <input type="text" class="form-control mt-2 d-none" id="new_venue" name="new_venue" placeholder="Enter new venue name">
+            </div>
+
+            <div class="mb-3">
+                <label for="category_id" class="form-label">Category</label>
+                <select class="form-select" id="category_id" name="category_id" onchange="toggleNewCategory(this)">
+                    <option disabled selected>Select Category</option>
+                    {% for category in categories %}
+                        <option value="{{ category.category_id }}">{{ category.name }}</option>
+                    {% endfor %}
+                    <option value="new">Add new category</option>
+                </select>
+                <input type="text" class="form-control mt-2 d-none" id="new_category" name="new_category" placeholder="Enter new category name">
+            </div>
+            <div class="mb-3">
+                <label for="ticket_price" class="form-label">Ticket Price</label>
+                <input type="number" step="0.01" class="form-control" id="ticket_price" name="ticket_price" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="available_seats" class="form-label">Available Seats</label>
+                <input type="number" class="form-control" id="available_seats" name="available_seats" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="image" class="form-label">Event Image</label>
+                <input type="file" class="form-control" id="image" name="image">
+            </div>
+
+            <button type="submit" class="btn btn-primary w-100">Create Event</button>
+        </form>
+    </div>
+</div>
+
+<script>
+    function toggleNewVenue(select) {
+        const input = document.getElementById('new_venue');
+        input.classList.toggle('d-none', select.value !== 'new');
+    }
+
+    function toggleNewCategory(select) {
+        const input = document.getElementById('new_category');
+        input.classList.toggle('d-none', select.value !== 'new');
+    }
+</script>
+
+{% endblock %}

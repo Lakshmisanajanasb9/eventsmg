@@ -1,5 +1,8 @@
-from flask import Blueprint, render_template, jsonify,request
-from website.models import db, Event,Booking
+from flask import Blueprint, render_template, jsonify,request,flash,url_for,redirect
+from website.models import db, Event,Booking,Venue,Category
+from datetime import datetime
+from website import db
+from flask_login import login_required, current_user
 
 events = Blueprint('events' , __name__)
 
@@ -7,6 +10,75 @@ events = Blueprint('events' , __name__)
 def get_events():
     events_conert = Event.query.all()
     return jsonify([{'id': event.id, 'name': event.name, 'date': event.date} for event in events_conert ]),200
+
+@events.route('/create_event', methods=['GET', 'POST'])
+def create_event():
+    if request.method == 'POST':
+        name = request.form['title']
+        description = request.form['description']
+        date = request.form['date']
+        time = request.form['time']
+        location = request.form['location']
+        ticket_price = request.form.get('ticket_price', 0)
+        available_seats = request.form.get('available_seats', 0)
+        category_id = request.form.get('category_id')
+        venue_id = request.form.get('venue_id')
+        image = request.files.get('image')
+
+        # Handle venue
+        if request.form['venue_id'] == 'new':
+            new_venue_name = request.form['new_venue']
+            new_venue = Venue(name=new_venue_name, location=location, capacity=100)  # Default capacity or add more fields
+            db.session.add(new_venue)
+            db.session.flush()  # gets the ID without commit
+            venue_id = new_venue.venue_id
+        else:
+            venue_id = request.form['venue_id']
+
+        # Handle category
+        if request.form['category_id'] == 'new':
+            new_category_name = request.form['new_category']
+            new_category = Category(name=new_category_name)
+            db.session.add(new_category)
+            db.session.flush()
+            category_id = new_category.category_id
+        else:
+            category_id = request.form['category_id']
+
+        try:
+            event_datetime = datetime.strptime(f"{date} {time}", '%Y-%m-%d %H:%M')
+        except ValueError:
+            flash('Invalid date or time format.', 'danger')
+            return redirect(url_for('events.create_event'))
+
+        # Optional: Save image and get URL/path
+        #if image:
+            filename = secure_filename(image.filename)
+            image.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+
+        new_event = Event(
+                admin_id=current_user.id,  # assuming the user is an admin
+                name=name,
+                date=event_datetime,
+                description=description,
+                venue_id=venue_id,
+                category_id=category_id,
+                ticket_price=ticket_price,
+                available_seats=available_seats
+            ) 
+        try:
+            db.session.add(new_event)
+            db.session.commit()
+            flash('Event created successfully','success')
+            return redirect(url_for('admin.admin_home'))
+        except Exception as e:
+            db.session.rollback()
+            flash('Error creating event. Please try again','danger')
+            print(e)
+
+    venues = Venue.query.all()
+    categories = Category.query.all()
+    return render_template('organizer/create_event.html', venues=venues,categories=categories)
 
 @events.route('/book-event', methods=['POST'])
 def book_event():

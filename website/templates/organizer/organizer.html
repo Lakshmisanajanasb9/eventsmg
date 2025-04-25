@@ -6,74 +6,86 @@
 {% block navbar %}
 <!--Organizer Navbar-->
 <li class="nav-item">
-    <a class="nav-link text-white" href="{{ url_for('views.search') }}">Events</a>
+    <a class="nav-link text-white" href="{{ url_for('views.search') }}"></a>
 </li>
 <li class="nav-item">
-    <a class="nav-link text-white" href="#">Orders</a>
-</li>
-<li class="nav-item">
-    <a class="nav-link text-white" href="{{ url_for('auth.login') }}">Settings</a>
+    <a class="nav-link text-white" href="#"></a>
 </li>
 {% endblock %}
+
 {% block adminState %}
     <li><a class="dropdown-item" href="{{ url_for('views.home') }}">Return to Exploring Events</a></li>
 {% endblock %}
 
 {% block content %}
-  <div class="container my-5">
-    <div class="card shadow-lg border-0 rounded-4">
-      <div class="card-body p-5">
-        <h2 class="card-title mb-3">Create an Event</h2>
-        <p class="text-muted mb-4">
-          Add all your event details, create new tickets.
-        </p>
-        <button class="btn btn-primary btn-lg">Create Event</button>
-      </div>
+<div class="container my-5">
+
+  {% if events|length == 0 %}
+  <!-- Checklist shown only if no events -->
+  <div class="card shadow-lg border-0 rounded-4 mb-5">
+    <div class="card-body p-5">
+      <h2 class="card-title mb-3">Create an Event</h2>
+      <p class="text-muted mb-4">Add all your event details, create new tickets.</p>
+      <a href="{{ url_for('events.create_event') }}" class="btn btn-primary btn-lg">Create Event</a>
     </div>
-    <div class="container my-5">
+  </div>
+
   <div class="card shadow border-0 rounded-4">
     <div class="card-body p-5">
       <p class="text-uppercase text-muted small mb-1">Your checklist</p>
       <p class="fs-5 text-secondary mb-4">Here's how to start!</p>
 
-      <!-- Checklist item -->
-      <a href="/manage/events/1331706924259/details" class="text-decoration-none text-dark">
+      <a href="/manage/events/new/details" class="text-decoration-none text-dark">
         <div class="d-flex justify-content-between align-items-start border rounded p-3 mb-3 hover-shadow">
-          <div class="d-flex">
-           <div class="ms-auto text-start">
-              <div class="fw-bold">Create event</div>
-              <div class="text-muted small">Publish an event to reach millions of people</div>
-            </div>
+          <div class="ms-auto text-start">
+            <div class="fw-bold">Create event</div>
+            <div class="text-muted small">Publish an event to reach millions of people</div>
           </div>
         </div>
       </a>
 
-      <!-- Checklist item -->
-      <a href="/organizations/info/profile/110217653451" class="text-decoration-none text-dark">
+      <a href="/organizations/info/profile" class="text-decoration-none text-dark">
         <div class="d-flex justify-content-between align-items-start border rounded p-3 mb-3 hover-shadow">
-          <div class="d-flex">
-           <div class="ms-auto text-start">
-              <div class="fw-bold">Set up your organizer profile</div>
-              <div class="text-muted small">Highlight your brand by adding your organizer name, image, and bio.</div>
-            </div>
+          <div class="ms-auto text-start">
+            <div class="fw-bold">Set up your organizer profile</div>
+            <div class="text-muted small">Highlight your brand by adding your organizer name, image, and bio.</div>
           </div>
         </div>
       </a>
 
-      <!-- Checklist item -->
       <a href="/organizations/finance-settings/bank-accounts" class="text-decoration-none text-dark">
-        <div class="d-flex justify-content-between align-items-start border rounded p-3 mb-3 hover-shadow">
-          <div class="d-flex">
-           <div class="ms-auto text-start">
-              <div class="fw-bold">Add your bank account</div>
-              <div class="text-muted small">Get paid for future ticket sales by entering your bank details.</div>
-            </div>
+        <div class="d-flex justify-content-between align-items-start border rounded p-3 hover-shadow">
+          <div class="ms-auto text-start">
+            <div class="fw-bold">Add your bank account</div>
+            <div class="text-muted small">Get paid for future ticket sales by entering your bank details.</div>
           </div>
         </div>
       </a>
-
     </div>
   </div>
-</div>
+
+  {% else %}
+  <!-- Show Events if exist -->
+  <h2 class="mb-4">Your Events</h2>
+  <div class="row row-cols-1 row-cols-md-2 g-4">
+    {% for event in events %}
+    <div class="col">
+      <div class="card h-100 shadow-sm border-0">
+        <div class="card-body">
+          <h5 class="card-title">{{ event.name }}</h5>
+          <p class="card-text text-muted">{{ event.description[:100] }}...</p>
+          <p class="card-text"><strong>Date:</strong> {{ event.date.strftime('%Y-%m-%d %H:%M') }}</p>
+          <a href="" class="btn btn-outline-primary btn-sm">View</a>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+
+  <!-- Create event button at bottom -->
+  <div class="text-center mt-5">
+    <a href="{{ url_for('events.create_event') }}" class="btn btn-primary btn-lg">+ Create New Event</a>
+  </div>
+  {% endif %}
 </div>
 {% endblock %}

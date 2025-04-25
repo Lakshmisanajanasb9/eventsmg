@@ -17,7 +17,7 @@ def profile():
 
 @views.route('/buyTicket', methods=['GET','POST'])
 def buyTicket():
-    return render_template('buyTicket.html')
+    return render_template('organizer/create_event.html')
 
 events_data = [
     {"id": 1, "name": "Concert", "date": "2025-05-01", "available_seats": 100, "price": 50},

@@ -10,4 +10,9 @@ To run:
 
 - [ ] payment
 - [ ] categories filter and search bar for location
-- [ ] create event
+- [ ] create event pages
+- [ ] gmail resets and profile links
+- [ ] outh
+- [ ] testing
+- [ ] set up variables for events and categories
+- [ ] navbars
