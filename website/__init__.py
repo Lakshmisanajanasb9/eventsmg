@@ -4,9 +4,13 @@ from flask_login import LoginManager
 import stripe,os
 from dotenv import load_dotenv
 from flask_mail import Mail
+from flask_migrate import Migrate
+
 
 db = SQLAlchemy() 
 mail = Mail()  
+STRIPE_PUBLISHABLE_KEY = os.getenv('STRIPE_PUBLISHABLE_KEY')
+migrate = Migrate()
 
 def create_app():
     app = Flask(__name__)
@@ -16,7 +20,7 @@ def create_app():
     app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL') 
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
     app.secret_key = "supersecretkey"
-    stripe.api_key = os.environ.get('STRIPE_SECRET_KEY')
+    stripe.api_key = os.getenv('STRIPE_SECRET_KEY')
 
     app.config['MAIL_SERVER'] = 'smtp.gmail.com'
     app.config['MAIL_PORT'] = 587
@@ -26,6 +30,7 @@ def create_app():
     
     db.init_app(app)
     mail.init_app(app)
+    migrate.init_app(app, db)
 
     # This line will create the event table if it doesn't exist already
     with app.app_context():

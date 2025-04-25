@@ -8,6 +8,7 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
     <link rel="stylesheet" href="{{ url_for('static', filename='stylesheet.css') }}" type="text/css"/>
+    <script src="https://js.stripe.com/v3/"></script>
 </head>
 <body>
 
@@ -124,6 +125,8 @@
   <button type="submit" class="btn btn-primary">Confirm</button>
 </form>
 
+<button id="checkout-button">Add Card</button>
+
 
     <!-- Footer -->
     <footer class="footer">
@@ -133,7 +136,20 @@
     <!-- Bootstrap JavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
-    <!-- Toggle Login/Register JS -->
+      <script type="text/javascript">
+    const stripe = Stripe("{{ stripe_key }}");
+    const checkoutButton = document.getElementById("checkout-button");
+    checkoutButton.addEventListener("click", function () {
+      stripe.redirectToCheckout({
+        sessionId: "{{ checkout_session_id }}"
+      }).then(function (result) {
+        if (result.error) {
+          alert(result.error.message);
+        }
+      });
+    });
+  </script>
+
     <script>
 
 

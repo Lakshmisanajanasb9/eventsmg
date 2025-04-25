@@ -26,6 +26,9 @@
                     <li class="nav-item">
                         <a class="nav-link text-white"  href="{{ url_for('views.search') }}" >Categories</a>
                     </li>
+                    <li class="nav-item">
+                      <span class="nav-separator mx-2">|</span>
+                    </li>
                     <!--
                     <li class="nav-item">
                         <a class ="nav-link text-white" href="{{ url_for('views.buyTicket') }}" >Payment</a>
@@ -35,14 +38,14 @@
                         <div class="ms-auto d-flex align-items-center">
                         <div class="dropdown">
                             <a class="d-flex align-items-center text-decoration-none dropdown-toggle" href="#" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                                <span class="d-none d-sm-inline">{{ current_user.first_name }} {{ current_user.last_name }} </span>
+                                <span class="d-none d-sm-inline nav-link text-white">{{ current_user.first_name }} {{ current_user.last_name }} </span>
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
                                 <li><a class="dropdown-item" href="{{ url_for('views.profile') }}">Profile</a></li>
                                 {% block adminState %}
                                 <li><a class="dropdown-item" href="{{ url_for('admin.admin_home') }}">Manage events</a></li>
                                 {% endblock %}
-                                <li><a class="dropdown-item" href="#">Settings</a></li>
+                                <li><a class="dropdown-item" href="{{ url_for('admin.admin_add_card') }}">Settings</a></li>
                                 <li><hr class="dropdown-divider"></li>
                                 <li><a class="dropdown-item" href="{{ url_for('auth.logout') }}">Logout</a></li>
                             </ul>
