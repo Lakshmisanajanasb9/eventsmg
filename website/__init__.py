@@ -18,13 +18,12 @@ def create_app():
     app.secret_key = "supersecretkey"
     stripe.api_key = os.environ.get('STRIPE_SECRET_KEY')
 
-    app.config['MAIL_SERVER'] = 'localhost'
-    app.config['MAIL_PORT'] = 1025
-    app.config['MAIL_USE_TLS'] = False
-    app.config['MAIL_USE_SSL'] = False
-    app.config['MAIL_USERNAME'] = ''
-    app.config['MAIL_PASSWORD'] = ''
-
+    app.config['MAIL_SERVER'] = 'smtp.gmail.com'
+    app.config['MAIL_PORT'] = 587
+    app.config['MAIL_USE_TLS'] = True
+    app.config['MAIL_USERNAME'] = os.environ.get('MAIL_USERNAME')
+    app.config['MAIL_PASSWORD'] = os.environ.get('MAIL_PASSWORD')
+    
     db.init_app(app)
     mail.init_app(app)
 
