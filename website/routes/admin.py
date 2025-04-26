@@ -43,3 +43,32 @@ def admin_add_card():
 @admin.route('/admin/card-added-success')
 def card_added_success():
     return "Card added successfully!"
+
+def create_checkout_session(stripe_secret_key, connected_account_id, success_url, product_name, amount_cents, currency="usd", application_fee_amount=123):
+    stripe.api_key = stripe_secret_key
+
+    session = stripe.checkout.Session.create(
+        line_items=[
+            {
+                "price_data": {
+                    "currency": currency,
+                    "product_data": {"name": product_name},
+                    "unit_amount": amount_cents,
+                },
+                "quantity": 1,
+            },
+        ],
+        payment_intent_data={
+            "application_fee_amount": application_fee_amount
+        },
+        mode="payment",
+        success_url=success_url + "?session_id={CHECKOUT_SESSION_ID}",
+        cancel_url=success_url,  # You can customize cancel_url separately if you want
+        stripe_account=connected_account_id,
+    )
+    
+    return session 
+
+
+
+

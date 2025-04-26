@@ -21,8 +21,7 @@ def buyTicket():
 
 @views.route('/test', methods=['GET','POST'])
 def settings():
-    return render_template('organizer/create_eve ent.html')
-
+    return render_template('order.html')
 
 events_data = [
     {"id": 1, "name": "Concert", "date": "2025-05-01", "available_seats": 100, "price": 50},
