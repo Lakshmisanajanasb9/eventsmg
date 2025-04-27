@@ -6,7 +6,8 @@ views = Blueprint('views' , __name__)
 
 @views.route('/', methods=['GET', 'POST'])
 def home():
-    return render_template('eventshome.html')
+    popular_events = Event.query.order_by(Event.date.asc()).limit(3).all()  
+    return render_template('eventshome.html',popular_events=popular_events)
 
 @views.route('/search', methods=['GET','POST'])
 def search():

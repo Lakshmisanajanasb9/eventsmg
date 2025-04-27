@@ -86,7 +86,7 @@
           <h5 class="card-title">{{ event.name }}</h5>
           <p class="card-text text-muted">{{ event.description[:100] }}...</p>
           <p class="card-text"><strong>Date:</strong> {{ event.date.strftime('%Y-%m-%d %H:%M') }}</p>
-          <a href="" class="btn btn-outline-primary btn-sm">View</a>
+          <a href="{{ url_for('events.event_details', event_id=event.event_id) }}" class="btn btn-outline-primary btn-sm">View</a>
         </div>
       </div>
     </div>

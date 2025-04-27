@@ -88,46 +88,36 @@
 
     {% block categories %}
     <!-- Upcoming Events Section -->
+
     <section class="events container my-5">
-        <h2 class="text-center mb-4">Popular Upcoming Events</h2>
-        <div class="row">
-            <!-- Event 1 -->
-            <div class="col-md-4">
-                <div class="card">
-                    <img src= "{{ url_for('static', filename='images/concert-example.png')}}" class="card-img-top" alt="Concert">
-                    <div class="card-body">
-                        <h3 class="card-title">Live Music Concert</h3>
-                        <p class="card-text">March 15, 2025 | New York</p>
-                        <a href="#" class="btn btn-outline-primary">Event Details</a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Event 2 -->
-            <div class="col-md-4">
-                <div class="card">
-                    <img src="{{ url_for('static',filename='images/ballet-example.webp')}}" class="card-img-top" alt="Ballet">
-                    <div class="card-body">
-                        <h3 class="card-title">Swan Lake Ballet Performance</h3>
-                        <p class="card-text">May 8, 2025 | London</p>
-                        <a href="#" class="btn btn-outline-primary">Event Details</a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Event 3 -->
-            <div class"col-md-4">
-                <div class="card">
-                    <img src="{{ url_for('static',filename = 'images/football-example.webp')}}" class="card-img-top" alt="Football">
-                    <div class="card-body">
-                        <h3 class="card-title">Football Game</h3>
-                        <p class="card-text">July 20, 2025 | Manchester</p>
-                        <a href="#" class="btn btn-outline-primary">Event Details</a>
-                    </div>
+    <h2 class="text-center mb-4">Popular Upcoming Events</h2>
+    <div class="row">
+        {% for event in popular_events %}
+        <div class="col-md-4 mb-4">
+            <div class="card h-100 shadow-sm border-0">
+                {% if event.category.name == 'Concerts' %}
+                    <img src="{{ url_for('static', filename='images/concert-category.jpg') }}" class="card-img-top" alt="Concerts">
+                {% elif event.category.name == 'Sports' %}
+                    <img src="{{ url_for('static', filename='images/sport-category.jpg') }}" class="card-img-top" alt="Sports">
+                {% elif event.category.name == 'Festivals' %}
+                    <img src="{{ url_for('static', filename='images/festival-category.jpg') }}" class="card-img-top" alt="Festivals">
+                {% elif event.category.name == 'Theatre' %}
+                    <img src="{{ url_for('static', filename='images/theatre-category.jpg') }}" class="card-img-top" alt="Theatre">
+                {% else %}
+                    <img src="{{ url_for('static', filename='images/default.webp') }}" class="card-img-top" alt="Event">
+                {% endif %}
+                <div class="card-body">
+                    <h5 class="card-title">{{ event.name }}</h5>
+                    <p class="card-text text-muted">{{ event.description[:100] }}...</p>
+                    <p class="card-text"><strong>Date:</strong> {{ event.date.strftime('%Y-%m-%d %H:%M') }}</p>
+                    <a href="{{ url_for('events.event_details', event_id=event.event_id) }}" class="btn btn-outline-primary btn-sm">View</a>
                 </div>
             </div>
         </div>
+        {% endfor %}
+    </div>
     </section>
+    
     {% endblock %}
 
 
