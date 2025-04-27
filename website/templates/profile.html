@@ -8,7 +8,7 @@
     <div class="container mt-5">
         <div class="card shadow-lg p-4 profile-card">
             <h2 class="mb-4 text-center">My Profile</h2>
-            
+            <div id="profileInfo"> 
             <div class="row mb-3">
                 <div class="col-sm-4 fw-bold">First Name:</div>
                 <div class="col-sm-8">{{current_user.first_name}}</div>
@@ -26,12 +26,17 @@
                 <div class="col-sm-8">{{current_user.phone_number}}</div>
             </div>
 
+            <div class="text-center mt-3">
+                <button class="btn btn-primary" onclick="toggleEditForm()">Edit Profile</button>
+            </div>
+
             <div class="text-center mt-4 green">
                 <a href="{{ url_for('auth.logout') }}" class="btn btn-danger">Logout</a>
             </div>   
+            </div>
 	
 	<!-- Hidden Edit Form -->
-            <form id="editProfileForm" class="d-none mt-4" method="POST" action="">
+            <form id="editProfileForm" class="d-none mt-4" method="POST" action="{{ url_for('auth.edit_profile') }}">
                 <div class="mb-3">
                     <label for="firstName" class="form-label">First Name</label>
                     <input type="text" name="first_name" id="firstName" class="form-control" value="{{ current_user.first_name }}" required>

@@ -48,6 +48,8 @@ class Event(db.Model):
     #relations
     category_id = db.Column(db.Integer, db.ForeignKey('category.category_id'), nullable=True)
     category = db.relationship('Category', backref='events')
+    bookings = db.relationship('Booking', back_populates='event', cascade="all, delete-orphan")
+
 
 class Venue(db.Model):
     venue_id = db.Column(db.Integer, primary_key=True)
@@ -79,7 +81,7 @@ class Booking(db.Model):
     booking_date = db.Column(db.DateTime)
     # Relationships
     customer = db.relationship('Customer', backref='bookings')
-    event = db.relationship('Event', backref='bookings')
+    event = db.relationship('Event', back_populates='bookings')
 
 class Review(db.Model):
     __tablename__ = 'review'

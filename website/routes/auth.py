@@ -1,7 +1,7 @@
 from flask import render_template,request,flash,redirect,url_for,Blueprint,session
 from website.models import Customer
 from website import db,mail
-from flask_login import logout_user,login_required,login_user
+from flask_login import logout_user,login_required,login_user,current_user
 from werkzeug.security import generate_password_hash,check_password_hash
 from website.forms.auth_forms import ResetRequestForm,ResetPasswordForm
 from flask_mail import Message
@@ -109,6 +109,24 @@ def reset_token(token):
         return redirect(url_for('auth.login'))
 
     return render_template('reset_token.html', form=form)
+
+@auth.route('/edit-profile', methods=['POST'])
+def edit_profile():
+    first_name = request.form.get('first_name')
+    last_name = request.form.get('last_name')
+    email = request.form.get('email')
+    phone_number = request.form.get('phone_number')
+
+    # Update user
+    current_user.first_name = first_name
+    current_user.last_name = last_name
+    current_user.email = email
+    current_user.phone_number = phone_number
+
+    db.session.commit()
+    flash('Profile updated successfully!', category='success')
+
+    return redirect(url_for('views.profile'))
 
 
 

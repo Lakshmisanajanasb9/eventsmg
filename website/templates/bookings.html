@@ -20,6 +20,9 @@
                                 <strong>Location:</strong> {{ booking.location }}<br>
                                 <strong>Tickets:</strong> {{ booking.num_tickets }}
                             </p>
+                            <form method="POST" action="{{ url_for('events.cancel_booking', booking_id=booking.booking_id) }}">
+                                <button type="submit" class="btn btn-danger btn-sm">Cancel Booking</button>
+                            </form>
                         </div>
                     </div>
                 </div>

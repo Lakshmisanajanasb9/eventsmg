@@ -92,29 +92,25 @@ def category_events(category_id):
                           category=category, 
                           events=events)
 
-@events.route('/cancel-booking', methods=['POST'])
-def cancel_booking():
-    data = request.get_json()
-    booking_id = data.get('booking_id')
-
-    if not booking_id:
-        return jsonify({'error': 'Booking ID is required'}), 400
-
+@events.route('/cancel-booking/<int:booking_id>', methods=['POST'])
+def cancel_booking(booking_id):
     # Find the booking
     booking = Booking.query.get(booking_id)
     if not booking:
-        return jsonify({'error': 'Booking not found'}), 404
+        flash('Booking not found.', 'danger')
+        return redirect(url_for('views.bookings'))
 
     # Find the event and restore available seats
     event = Event.query.get(booking.event_id)
     if event:
-        event.available_seats += booking.num_tickets  # Restore the seats
+        event.available_seats += booking.num_tickets  # Restore seats
 
-    # Remove the booking
+    # Delete the booking
     db.session.delete(booking)
     db.session.commit()
 
-    return jsonify({'message': 'Booking canceled successfully'}), 200
+    flash('Booking canceled successfully!', 'success')
+    return redirect(url_for('views.bookings'))
 
 @events.route('/search-events', methods=['GET'])
 def search_events():
@@ -219,5 +215,17 @@ def event_details(event_id):
                           event=event, 
                           venue=venue,
                            related_events=related_events)
+
+@events.route('/delete-event/<int:event_id>', methods=['POST'])
+def delete_event(event_id):
+    event = Event.query.get(event_id)
+    if not event:
+        flash('Event not found.', 'danger')
+        return redirect(url_for('admin.admin_home'))
+
+    db.session.delete(event)
+    db.session.commit()
+    flash('Event deleted successfully!', 'success')
+    return redirect(url_for('admin.admin_home'))
 
 
