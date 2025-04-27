@@ -1,0 +1,93 @@
+{% extends "eventshome.html" %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-8">
+            <h1>{{ event.name }}</h1>
+            
+            <div class="mb-4">
+                <span class="badge bg-primary">{{ event.category.name }}</span>
+                <p class="text-muted mt-2">
+                    <i class="fas fa-calendar"></i> {{ event.date.strftime('%A, %B %d, %Y') }} at {{ event.date.strftime('%I:%M %p') }}
+                </p>
+            </div>
+            
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h5 class="card-title">About This Event</h5>
+                    <p class="card-text">{{ event.description }}</p>
+                </div>
+            </div>
+            
+            <!-- If you have images for the event, you can display them here -->
+            
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h5 class="mb-0">Event Details</h5>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item d-flex justify-content-between">
+                        <span>Price</span>
+                        <strong>${{ event.ticket_price }}</strong>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between">
+                        <span>Available Seats</span>
+                        <strong>{{ event.available_seats }}</strong>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="col-md-4">
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h5 class="mb-0">Venue Information</h5>
+                </div>
+                <div class="card-body">
+                    <h6>{{ venue.name }}</h6>
+                    <p>{{ venue.location }}</p>
+                    <p>Capacity: {{ venue.capacity }}</p>
+                    
+                    <!-- You could add a map here if you have venue coordinates -->
+                </div>
+            </div>
+            
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Get Your Tickets</h5>
+                    <p>Don't miss this event! Secure your tickets now.</p>
+                    
+                    {% if event.available_seats > 0 %}
+                    <a href="{{ url_for('events.book_event', event_id=event.event_id) }}" class="btn btn-primary w-100">Buy Tickets</a>
+                    {% else %}
+                        <button class="btn btn-secondary w-100" disabled>Sold Out</button>
+                    {% endif %}
+                </div>
+            </div>  
+        </div>
+    </div>
+    
+    <!-- Related events section -->
+<div class="row mt-5">
+    <div class="col-12">
+        <h3>More {{ event.category.name }} Events</h3>
+        <div class="row">
+            {% for related_event in related_events %}
+                <div class="col-md-4 mb-3">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ related_event.name }}</h5>
+                            <p class="card-text">{{ related_event.date.strftime('%B %d, %Y') }}</p>
+                            <a href="{{ url_for('events.event_details', event_id=related_event.event_id) }}" class="btn btn-outline-primary">View Details</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+    </div>
+{% endblock %}
+
+{% block footer %}{% endblock %}

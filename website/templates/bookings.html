@@ -1,0 +1,35 @@
+{% extends "eventshome.html" %}
+{% block head %}
+    {{ super() }}
+{% endblock %}
+
+
+{% block content %}
+<div class="container mt-5">
+    <h1 class="text-center mb-4">My Bookings</h1>
+
+    {% if bookings %}
+        <div class="row">
+            {% for booking in bookings %}
+                <div class="col-md-6">
+                    <div class="card mb-4 shadow-sm">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ booking.event_name }}</h5>
+                            <p class="card-text">
+                                <strong>Date:</strong> {{ booking.booking_date.strftime('%Y-%m-%d %H:%M') }}<br>
+                                <strong>Location:</strong> {{ booking.location }}<br>
+                                <strong>Tickets:</strong> {{ booking.num_tickets }}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <div class="alert alert-info text-center">
+            You have no bookings yet. <a href="{{ url_for('views.home') }}" class="alert-link">Browse events!</a>
+        </div>
+    {% endif %}
+</div>
+{% endblock %}
+{% block footer %}{% endblock %}

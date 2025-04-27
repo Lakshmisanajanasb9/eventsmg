@@ -71,6 +71,7 @@ class Performer(db.Model):
 class Booking(db.Model):
     __tablename__ = 'booking'
     booking_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    booking_name = db.Column(db.String(255),nullable=False)
     customer_id = db.Column(db.Integer, db.ForeignKey('customer.id'), nullable=False)
     event_id = db.Column(db.Integer, db.ForeignKey('event.event_id'), nullable=False)
     num_tickets = db.Column(db.Integer, nullable=False)

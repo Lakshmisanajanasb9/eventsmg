@@ -71,7 +71,17 @@
     {% for event in events %}
     <div class="col">
       <div class="card h-100 shadow-sm border-0">
-        <img src="{{ url_for('static',filename='images/ballet-example.webp')}}" class="card-img-top" alt="Ballet">
+        {% if event.category.name == 'Concerts' %}
+          <img src="{{ url_for('static', filename='images/concert-category.jpg') }}" class="card-img-top" alt="Concerts">
+        {% elif event.category.name == 'Sports' %}
+          <img src="{{ url_for('static', filename='images/sport-category.jpg') }}" class="card-img-top" alt="Sports">
+        {% elif event.category.name == 'Festivals' %}
+          <img src="{{ url_for('static', filename='images/festival-category.jpg') }}" class="card-img-top" alt="Festivals">
+        {% elif event.category.name == 'Theatre' %}
+          <img src="{{ url_for('static', filename='images/theatre-category.jpg') }}" class="card-img-top" alt="Theatre">
+        {% else %}
+          <img src="{{ url_for('static', filename='images/default.webp') }}" class="card-img-top" alt="Event">
+        {% endif %}
         <div class="card-body">
           <h5 class="card-title">{{ event.name }}</h5>
           <p class="card-text text-muted">{{ event.description[:100] }}...</p>

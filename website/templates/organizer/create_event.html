@@ -50,12 +50,13 @@
                 <label for="category_id" class="form-label">Category</label>
                 <select class="form-select" id="category_id" name="category_id" onchange="toggleNewCategory(this)">
                     <option disabled selected>Select Category</option>
-                    {% for category in categories %}
-                        <option value="{{ category.category_id }}">{{ category.name }}</option>
-                    {% endfor %}
-                    <option value="new">Add new category</option>
+
+                    <option value="1">Concerts</option>
+                    <option value="2">Sports</option>
+                    <option value="3">Festivals</option>
+                    <option value="4">Theatre</option>
                 </select>
-                <input type="text" class="form-control mt-2 d-none" id="new_category" name="new_category" placeholder="Enter new category name">
+                <!--<input type="text" class="form-control mt-2 d-none" id="new_category" name="new_category" placeholder="Enter new category name"> -->
             </div>
             <div class="mb-3">
                 <label for="ticket_price" class="form-label">Ticket Price</label>

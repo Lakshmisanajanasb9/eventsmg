@@ -6,8 +6,34 @@ from dotenv import load_dotenv
 from flask_mail import Mail
 from flask_migrate import Migrate
 
+def create_fixed_categories(category):
+    categories = ['Concerts', 'Sports', 'Festivals', 'Theatre']
+    
+    for category_name in categories:
+        # Check if the category already exists to avoid duplicates
+        if not category.query.filter_by(name=category_name).first():
+            new_category = category(name=category_name)
+            db.session.add(new_category)
+    
+    db.session.commit()
+
+def init_categories():
+    categories = [
+        Category(name='Concerts'),
+        Category(name='Sports'),
+        Category(name='Festivals'),
+        Category(name='Theatre')
+    ]
+    
+    for category in categories:
+        existing = Category.query.filter_by(name=category.name).first()
+        if not existing:
+            db.session.add(category)
+    
+    db.session.commit()
 
 db = SQLAlchemy() 
+from website.models import Category
 mail = Mail()  
 STRIPE_PUBLISHABLE_KEY = os.getenv('STRIPE_PUBLISHABLE_KEY')
 migrate = Migrate()
@@ -32,11 +58,14 @@ def create_app():
     mail.init_app(app)
     migrate.init_app(app, db)
 
+
+    from .models import Customer,Category
+
     # This line will create the event table if it doesn't exist already
     with app.app_context():
         db.create_all()
+        init_categories()
 
-    from .models import Customer
 
     login_manager = LoginManager()
     login_manager.init_app(app)

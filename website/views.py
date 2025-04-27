@@ -1,5 +1,6 @@
 from flask import Blueprint, render_template, jsonify,request
 from .models import db, Event,Booking
+from flask_login import current_user
 
 views = Blueprint('views' , __name__)
 
@@ -14,6 +15,13 @@ def search():
 @views.route('/profile',methods=['GET','POST'])
 def profile():
     return render_template('profile.html')
+
+@views.route('/bookings',methods=['GET','POST'])
+def bookings():
+    user_id = current_user.id
+    user_bookings = Booking.query.filter_by(customer_id=user_id).all()
+    return render_template('bookings.html',bookings=user_bookings)
+
 
 @views.route('/buyTicket', methods=['GET','POST'])
 def buyTicket():

@@ -1,54 +1,74 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Stripe Checkout - Add Card</title>
-  
-  <!-- Bootstrap CSS -->
-  <link
-    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
-    rel="stylesheet"
-  />
-</head>
-<body>
-  <div class="container">
-    <h2 class="text-center mt-5">Add Card</h2>
+{% extends "eventshome.html" %}
+{% block head %}
+    {{ super() }}
+{% endblock %}
 
-    <!-- Button to initiate Stripe Checkout -->
-    <div class="text-center mt-4">
-      <button id="checkout-button" class="btn btn-primary">Add Card</button>
+{% block profile %}
+
+    <div class="container mt-5">
+        <div class="card shadow-lg p-4 profile-card">
+            <h2 class="mb-4 text-center">My Profile</h2>
+            
+            <div class="row mb-3">
+                <div class="col-sm-4 fw-bold">First Name:</div>
+                <div class="col-sm-8">{{current_user.first_name}}</div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-sm-4 fw-bold">Last Name:</div>
+                <div class="col-sm-8">{{current_user.last_name}}</div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-sm-4 fw-bold">Email:</div>
+                <div class="col-sm-8">{{current_user.email}}</div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-sm-4 fw-bold">Phone Number:</div>
+                <div class="col-sm-8">{{current_user.phone_number}}</div>
+            </div>
+
+            <div class="text-center mt-4 green">
+                <a href="{{ url_for('auth.logout') }}" class="btn btn-danger">Logout</a>
+            </div>   
+	
+	<!-- Hidden Edit Form -->
+            <form id="editProfileForm" class="d-none mt-4" method="POST" action="">
+                <div class="mb-3">
+                    <label for="firstName" class="form-label">First Name</label>
+                    <input type="text" name="first_name" id="firstName" class="form-control" value="{{ current_user.first_name }}" required>
+                </div>
+                <div class="mb-3">
+                    <label for="lastName" class="form-label">Last Name</label>
+                    <input type="text" name="last_name" id="lastName" class="form-control" value="{{ current_user.last_name }}" required>
+                </div>
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" name="email" id="email" class="form-control" value="{{ current_user.email }}" required>
+                </div>
+                <div class="mb-3">
+                    <label for="phoneNumber" class="form-label">Phone Number</label>
+                    <input type="text" name="phone_number" id="phoneNumber" class="form-control" value="{{ current_user.phone_number }}">
+                </div>
+
+                <div class="text-center">
+                    <button type="submit" class="btn btn-success">Save Changes</button>
+                    <button type="button" class="btn btn-secondary" onclick="toggleEditForm()">Cancel</button>
+                </div>
+            </form>
+        </div>
     </div>
-  </div>
 
-  <!-- Footer -->
-  <footer class="footer text-center mt-5">
-    <p>&copy; 2025 Event Booking. All Rights Reserved.</p>
-  </footer>
-
-  <!-- Stripe.js -->
-  <script src="https://js.stripe.com/v3/"></script>
-  
-  <!-- Bootstrap JavaScript -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
-  <script type="text/javascript">
-    // Initialize Stripe.js with your publishable key
-    const stripe = Stripe("{{ stripe_key }}");  // Ensure your public key is passed here
-    const checkoutButton = document.getElementById("checkout-button");
-
-    // When the button is clicked, redirect to Stripe Checkout page
-    checkoutButton.addEventListener("click", function () {
-      // Redirect to the Checkout session created on the server-side
-      stripe.redirectToCheckout({
-        sessionId: "{{ checkout_session_id }}"  // Session ID from the backend
-      }).then(function (result) {
-        if (result.error) {
-          // Handle errors (e.g., show a message to the user)
-          alert(result.error.message);
+    <!-- Toggle Form Script -->
+    <script>
+        function toggleEditForm() {
+            const profileInfo = document.getElementById('profileInfo');
+            const editProfileForm = document.getElementById('editProfileForm');
+            profileInfo.classList.toggle('d-none');
+            editProfileForm.classList.toggle('d-none');
         }
-      });
-    });
-  </script>
-</body>
-</html>
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+
+{% endblock %}
+
