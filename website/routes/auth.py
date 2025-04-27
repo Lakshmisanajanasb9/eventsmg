@@ -25,10 +25,10 @@ def register():
 
         if user_email:
             flash("email already exists",category='error')
-            return render_template('auth.register')
+            return render_template('register.html')
         if user_phone:
             flash("phone is already linked to other account",catergory='error')
-            return render_template('auth.register')
+            return render_template('register.html')
 
         new_user = Customer(
             first_name=first_name,
